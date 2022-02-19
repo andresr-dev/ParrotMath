@@ -8,17 +8,35 @@
 
 /* Begin PBXBuildFile section */
 		81F12DA027C0186A00850E2F /* EdutainmentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F12D9F27C0186A00850E2F /* EdutainmentApp.swift */; };
-		81F12DA227C0186A00850E2F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F12DA127C0186A00850E2F /* ContentView.swift */; };
 		81F12DA427C0186B00850E2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81F12DA327C0186B00850E2F /* Assets.xcassets */; };
 		81F12DA727C0186B00850E2F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81F12DA627C0186B00850E2F /* Preview Assets.xcassets */; };
+		81F12DB027C020C400850E2F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F12DAF27C020C400850E2F /* OnboardingView.swift */; };
+		81F12DB227C0218B00850E2F /* MultiplicationSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F12DB127C0218B00850E2F /* MultiplicationSelectionView.swift */; };
+		81F12DB427C0260400850E2F /* MultiplicationIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F12DB327C0260400850E2F /* MultiplicationIcon.swift */; };
+		81F12DB727C026DA00850E2F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F12DB627C026DA00850E2F /* Color.swift */; };
+		81F12DBA27C039D800850E2F /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F12DB927C039D800850E2F /* ContentModel.swift */; };
+		81F12DBD27C03DDF00850E2F /* ContinueLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F12DBC27C03DDF00850E2F /* ContinueLabel.swift */; };
+		81F12DC227C0413100850E2F /* Enums & Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F12DC127C0413100850E2F /* Enums & Structs.swift */; };
+		81F12DC427C05C4C00850E2F /* LogoTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F12DC327C05C4C00850E2F /* LogoTitleView.swift */; };
+		81F12DC627C05D3800850E2F /* LevelSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F12DC527C05D3800850E2F /* LevelSelectionView.swift */; };
+		81F12DC827C05DFD00850E2F /* LevelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F12DC727C05DFD00850E2F /* LevelButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		81F12D9C27C0186A00850E2F /* Edutainment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Edutainment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81F12D9F27C0186A00850E2F /* EdutainmentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdutainmentApp.swift; sourceTree = "<group>"; };
-		81F12DA127C0186A00850E2F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		81F12DA327C0186B00850E2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		81F12DA627C0186B00850E2F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		81F12DAF27C020C400850E2F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		81F12DB127C0218B00850E2F /* MultiplicationSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplicationSelectionView.swift; sourceTree = "<group>"; };
+		81F12DB327C0260400850E2F /* MultiplicationIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplicationIcon.swift; sourceTree = "<group>"; };
+		81F12DB627C026DA00850E2F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		81F12DB927C039D800850E2F /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
+		81F12DBC27C03DDF00850E2F /* ContinueLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueLabel.swift; sourceTree = "<group>"; };
+		81F12DC127C0413100850E2F /* Enums & Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enums & Structs.swift"; sourceTree = "<group>"; };
+		81F12DC327C05C4C00850E2F /* LogoTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoTitleView.swift; sourceTree = "<group>"; };
+		81F12DC527C05D3800850E2F /* LevelSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelectionView.swift; sourceTree = "<group>"; };
+		81F12DC727C05DFD00850E2F /* LevelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +70,10 @@
 			isa = PBXGroup;
 			children = (
 				81F12D9F27C0186A00850E2F /* EdutainmentApp.swift */,
-				81F12DA127C0186A00850E2F /* ContentView.swift */,
+				81F12DC027C0411A00850E2F /* Helpers */,
+				81F12DB527C026CB00850E2F /* Extensions */,
+				81F12DB827C039A800850E2F /* ViewModels */,
+				81F12DAD27C0208300850E2F /* Views */,
 				81F12DA327C0186B00850E2F /* Assets.xcassets */,
 				81F12DA527C0186B00850E2F /* Preview Content */,
 			);
@@ -65,6 +86,60 @@
 				81F12DA627C0186B00850E2F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		81F12DAD27C0208300850E2F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				81F12DAE27C0209000850E2F /* Onboarding */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		81F12DAE27C0209000850E2F /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				81F12DAF27C020C400850E2F /* OnboardingView.swift */,
+				81F12DB127C0218B00850E2F /* MultiplicationSelectionView.swift */,
+				81F12DC527C05D3800850E2F /* LevelSelectionView.swift */,
+				81F12DBB27C03DCB00850E2F /* Common */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		81F12DB527C026CB00850E2F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				81F12DB627C026DA00850E2F /* Color.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		81F12DB827C039A800850E2F /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				81F12DB927C039D800850E2F /* ContentModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		81F12DBB27C03DCB00850E2F /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				81F12DB327C0260400850E2F /* MultiplicationIcon.swift */,
+				81F12DBC27C03DDF00850E2F /* ContinueLabel.swift */,
+				81F12DC327C05C4C00850E2F /* LogoTitleView.swift */,
+				81F12DC727C05DFD00850E2F /* LevelButton.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		81F12DC027C0411A00850E2F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				81F12DC127C0413100850E2F /* Enums & Structs.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +212,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81F12DA227C0186A00850E2F /* ContentView.swift in Sources */,
+				81F12DB027C020C400850E2F /* OnboardingView.swift in Sources */,
+				81F12DBD27C03DDF00850E2F /* ContinueLabel.swift in Sources */,
+				81F12DC627C05D3800850E2F /* LevelSelectionView.swift in Sources */,
 				81F12DA027C0186A00850E2F /* EdutainmentApp.swift in Sources */,
+				81F12DC427C05C4C00850E2F /* LogoTitleView.swift in Sources */,
+				81F12DB427C0260400850E2F /* MultiplicationIcon.swift in Sources */,
+				81F12DB727C026DA00850E2F /* Color.swift in Sources */,
+				81F12DBA27C039D800850E2F /* ContentModel.swift in Sources */,
+				81F12DB227C0218B00850E2F /* MultiplicationSelectionView.swift in Sources */,
+				81F12DC827C05DFD00850E2F /* LevelButton.swift in Sources */,
+				81F12DC227C0413100850E2F /* Enums & Structs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
