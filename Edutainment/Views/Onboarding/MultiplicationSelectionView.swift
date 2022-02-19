@@ -56,12 +56,12 @@ extension MultiplicationSelectionView {
         LazyVGrid(columns: columns, spacing: 20) {
             ForEach(2..<11) { number in
                 Button {
-                    vm.multiplicand = number
+                    vm.multiplicandSelected = number
                 } label: {
                     MultiplicationIcon(
                         number: number,
-                        backgroundColor: vm.multiplicand == number ? .white : Color.theme.darkBlue,
-                        foregroundColor: vm.multiplicand == number ? .black : .white
+                        backgroundColor: vm.multiplicandSelected == number ? .white : Color.theme.darkBlue,
+                        foregroundColor: vm.multiplicandSelected == number ? .black : .white
                     )
                 }
             }

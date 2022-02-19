@@ -20,7 +20,7 @@ struct ContentView: View {
                     )
             }
             if !vm.settingsMode {
-                ArrangeNumbersView()
+                SortNumbersView()
                     .transition(.asymmetric(
                         insertion: .move(edge: .trailing),
                         removal: .move(edge: .leading))

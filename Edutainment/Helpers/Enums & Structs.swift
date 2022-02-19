@@ -7,5 +7,7 @@
 
 import Foundation
 
-
+enum Level: String, CaseIterable {
+    case easy, normal, expert
+}
 

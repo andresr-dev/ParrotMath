@@ -51,14 +51,14 @@ extension LevelSelectionView {
             .padding(.bottom, 5)
     }
     private var levelButtons: some View {
-        ForEach(0..<vm.levels.count, id: \.self) { number in
+        ForEach(vm.levels, id: \.self) { level in
             Button {
-                vm.levelSelected = number
+                vm.levelSelected = level
             } label: {
                 LevelButton(
-                    text: vm.levels[number],
-                    backgroundColor: vm.levelSelected == number ? .white : .theme.darkBlue,
-                    foregroundColor: vm.levelSelected == number ? .black : .white
+                    text: level.rawValue.capitalized,
+                    backgroundColor: vm.levelSelected == level ? .white : .theme.darkBlue,
+                    foregroundColor: vm.levelSelected == level ? .black : .white
                 )
             }
         }

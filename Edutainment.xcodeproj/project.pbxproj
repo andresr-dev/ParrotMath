@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		814510F927C14D4A00FB3B4D /* ArrangeNumbersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814510F827C14D4A00FB3B4D /* ArrangeNumbersView.swift */; };
+		814510F927C14D4A00FB3B4D /* SortNumbersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814510F827C14D4A00FB3B4D /* SortNumbersView.swift */; };
 		814510FC27C14FBC00FB3B4D /* BoxNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814510FB27C14FBC00FB3B4D /* BoxNumberView.swift */; };
 		814510FE27C1522400FB3B4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814510FD27C1522400FB3B4D /* ContentView.swift */; };
+		8145110127C1874F00FB3B4D /* Multiplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8145110027C1874F00FB3B4D /* Multiplication.swift */; };
 		81F12DA027C0186A00850E2F /* EdutainmentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F12D9F27C0186A00850E2F /* EdutainmentApp.swift */; };
 		81F12DA427C0186B00850E2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81F12DA327C0186B00850E2F /* Assets.xcassets */; };
 		81F12DA727C0186B00850E2F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81F12DA627C0186B00850E2F /* Preview Assets.xcassets */; };
@@ -26,9 +27,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		814510F827C14D4A00FB3B4D /* ArrangeNumbersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrangeNumbersView.swift; sourceTree = "<group>"; };
+		814510F827C14D4A00FB3B4D /* SortNumbersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortNumbersView.swift; sourceTree = "<group>"; };
 		814510FB27C14FBC00FB3B4D /* BoxNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxNumberView.swift; sourceTree = "<group>"; };
 		814510FD27C1522400FB3B4D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8145110027C1874F00FB3B4D /* Multiplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Multiplication.swift; sourceTree = "<group>"; };
 		81F12D9C27C0186A00850E2F /* Edutainment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Edutainment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81F12D9F27C0186A00850E2F /* EdutainmentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdutainmentApp.swift; sourceTree = "<group>"; };
 		81F12DA327C0186B00850E2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -60,8 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				814510FD27C1522400FB3B4D /* ContentView.swift */,
-				814510F827C14D4A00FB3B4D /* ArrangeNumbersView.swift */,
-				814510FA27C14FA300FB3B4D /* Common */,
+				8145110427C1913300FB3B4D /* ArrangeNumbers */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -72,6 +73,23 @@
 				814510FB27C14FBC00FB3B4D /* BoxNumberView.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		814510FF27C1872C00FB3B4D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8145110027C1874F00FB3B4D /* Multiplication.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8145110427C1913300FB3B4D /* ArrangeNumbers */ = {
+			isa = PBXGroup;
+			children = (
+				814510F827C14D4A00FB3B4D /* SortNumbersView.swift */,
+				814510FA27C14FA300FB3B4D /* Common */,
+			);
+			path = ArrangeNumbers;
 			sourceTree = "<group>";
 		};
 		81F12D9327C0186A00850E2F = {
@@ -96,6 +114,7 @@
 				81F12D9F27C0186A00850E2F /* EdutainmentApp.swift */,
 				81F12DC027C0411A00850E2F /* Helpers */,
 				81F12DB527C026CB00850E2F /* Extensions */,
+				814510FF27C1872C00FB3B4D /* Models */,
 				81F12DB827C039A800850E2F /* ViewModels */,
 				81F12DAD27C0208300850E2F /* Views */,
 				81F12DA327C0186B00850E2F /* Assets.xcassets */,
@@ -115,8 +134,8 @@
 		81F12DAD27C0208300850E2F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				814510F727C14B8600FB3B4D /* Game */,
 				81F12DAE27C0209000850E2F /* Onboarding */,
+				814510F727C14B8600FB3B4D /* Game */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -243,13 +262,14 @@
 				81F12DC627C05D3800850E2F /* LevelSelectionView.swift in Sources */,
 				814510FC27C14FBC00FB3B4D /* BoxNumberView.swift in Sources */,
 				81F12DA027C0186A00850E2F /* EdutainmentApp.swift in Sources */,
+				8145110127C1874F00FB3B4D /* Multiplication.swift in Sources */,
 				81F12DC427C05C4C00850E2F /* LogoTitleView.swift in Sources */,
 				81F12DB427C0260400850E2F /* MultiplicationIcon.swift in Sources */,
 				81F12DB727C026DA00850E2F /* Color.swift in Sources */,
 				81F12DBA27C039D800850E2F /* ContentModel.swift in Sources */,
 				81F12DB227C0218B00850E2F /* MultiplicationSelectionView.swift in Sources */,
 				81F12DC827C05DFD00850E2F /* LevelButton.swift in Sources */,
-				814510F927C14D4A00FB3B4D /* ArrangeNumbersView.swift in Sources */,
+				814510F927C14D4A00FB3B4D /* SortNumbersView.swift in Sources */,
 				81F12DC227C0413100850E2F /* Enums & Structs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
