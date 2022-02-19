@@ -31,6 +31,9 @@ struct SortNumbersView: View {
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(0..<vm.userAnswer.count, id: \.self) { index in
                             BoxNumberView(text: vm.userAnswer[index])
+                                .onTapGesture {
+                                    vm.answerBoxSelected(index: index)
+                                }
                         }
                     }
                     .padding()
@@ -39,10 +42,10 @@ struct SortNumbersView: View {
                 Spacer()
                 
                 LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach(0..<vm.shuffledCharacteres.count, id: \.self) { index in
-                        BoxNumberView(text: vm.shuffledCharacteres[index])
+                    ForEach(0..<vm.optionCharacters.count, id: \.self) { index in
+                        BoxNumberView(text: vm.optionCharacters[index])
                             .onTapGesture {
-                                vm.boxSelected(index: index)
+                                vm.optionBoxSelected(index: index)
                             }
                     }
                 }

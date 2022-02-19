@@ -20,7 +20,7 @@ class ContentModel: ObservableObject {
     
     // Sorting Game
     var correctAnswer = [[String]]()
-    @Published var shuffledCharacteres = [String]()
+    @Published var optionCharacters = [String]()
     @Published var userAnswer = [String]()
     @Published var multiplier = Array(2...10)
     
@@ -54,13 +54,18 @@ class ContentModel: ObservableObject {
             ]
         ]
         
-        correctAnswer.append(contentsOf: correctAnswers)
+        correctAnswer = correctAnswers
 
-        shuffledCharacteres = correctAnswer.first?.shuffled() ?? [""]
+        optionCharacters = correctAnswer.first?.shuffled() ?? ["ERROR"]
     }
     
-    func boxSelected(index: Int) {
-        userAnswer.append(shuffledCharacteres[index])
-        shuffledCharacteres.remove(at: index)
+    func optionBoxSelected(index: Int) {
+        userAnswer.append(optionCharacters[index])
+        optionCharacters.remove(at: index)
+    }
+    
+    func answerBoxSelected(index: Int) {
+        optionCharacters.append(userAnswer[index])
+        userAnswer.remove(at: index)
     }
 }
