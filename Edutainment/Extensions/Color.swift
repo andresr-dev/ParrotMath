@@ -13,7 +13,7 @@ extension Color {
 }
 
 struct ColorTheme {
-    let background = LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.2), Color.blue.opacity(0.4)]), startPoint: .topLeading, endPoint: .bottomTrailing)
+    let background = LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.1), Color.blue.opacity(0.25)]), startPoint: .topLeading, endPoint: .bottomTrailing)
     let darkBlue = Color("DarkBlue")
     let redParrot = Color("RedParrot")
 }

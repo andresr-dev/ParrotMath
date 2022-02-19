@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MultiplicationSelectionView: View {
     
-    @ObservedObject var vm: ContentModel
+    @EnvironmentObject var vm: ContentModel
     
     let columns: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 5, alignment: .center), count: 3)
     
@@ -34,7 +34,8 @@ struct MultiplicationSelectionView: View {
 
 struct MultiplicationSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        MultiplicationSelectionView(vm: ContentModel())
+        MultiplicationSelectionView()
+            .environmentObject(ContentModel())
             //.preferredColorScheme(.dark)
     }
 }
@@ -52,17 +53,16 @@ extension MultiplicationSelectionView {
             .fontWeight(.bold)
     }
     private var tablesGrid: some View {
-        LazyVGrid(columns: columns) {
+        LazyVGrid(columns: columns, spacing: 20) {
             ForEach(2..<11) { number in
                 Button {
-                    vm.tableSelected = number
+                    vm.multiplicand = number
                 } label: {
                     MultiplicationIcon(
                         number: number,
-                        backgroundColor: vm.tableSelected == number ? .white : Color.theme.darkBlue,
-                        foregroundColor: vm.tableSelected == number ? .black : .white
+                        backgroundColor: vm.multiplicand == number ? .white : Color.theme.darkBlue,
+                        foregroundColor: vm.multiplicand == number ? .black : .white
                     )
-                        .padding(.vertical, 5)
                 }
             }
         }

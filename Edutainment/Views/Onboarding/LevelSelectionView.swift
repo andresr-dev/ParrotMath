@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LevelSelectionView: View {
-    @ObservedObject var vm: ContentModel
+    @EnvironmentObject var vm: ContentModel
     
     var body: some View {
         ZStack {
@@ -32,7 +32,8 @@ struct LevelSelectionView: View {
 
 struct LevelSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        LevelSelectionView(vm: ContentModel())
+        LevelSelectionView()
+            .environmentObject(ContentModel())
     }
 }
 
@@ -64,9 +65,9 @@ extension LevelSelectionView {
     }
     private var continueButton: some View {
         Button {
-            
+            vm.startGame()
         } label: {
-            ContinueLabel(text: "Continue")
+            ContinueLabel(text: "Start Game!")
         }
     }
 }

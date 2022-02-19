@@ -7,14 +7,14 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    @StateObject private var vm = ContentModel()
+    @EnvironmentObject var vm: ContentModel
     
     var body: some View {
         TabView(selection: $vm.onboardingPageSelected) {
-            MultiplicationSelectionView(vm: vm)
+            MultiplicationSelectionView()
                 .tag(0)
             
-            LevelSelectionView(vm: vm)
+            LevelSelectionView()
                 .tag(1)
         }
         .tabViewStyle(.page)
@@ -25,5 +25,6 @@ struct OnboardingView: View {
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
         OnboardingView()
+            .environmentObject(ContentModel())
     }
 }
