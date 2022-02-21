@@ -23,8 +23,8 @@ class ContentModel: ObservableObject {
     @Published var optionsCharacters = [String]()
     @Published var multiplier = [Int](2...10)
     @Published var userAnswer = [String]()
-    @Published var rectanglesIdAnswer = [Int]()
-    @Published var showBoxInOptions = Array(repeating: true, count: 5)
+    @Published var rectanglesIdIndices = [Int]()
+    @Published var showCharacterInOptions = Array(repeating: true, count: 5)
     
     func startGame() {
         withAnimation {
@@ -56,9 +56,7 @@ class ContentModel: ObservableObject {
             ]
         ]
         correctAnswer = correctAnswers
-        
         let correctAnswerShuffled = correctAnswer.first?.shuffled() ?? [""]
-        
         for i in 0..<correctAnswerShuffled.count {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3 + (Double(i)/10 + 0.1)) {
                 self.optionsCharacters.append(correctAnswerShuffled[i])
@@ -67,22 +65,20 @@ class ContentModel: ObservableObject {
     }
     
     func optionsBoxSelected(index: Int) {
-        rectanglesIdAnswer.append(index)
+        rectanglesIdIndices.append(index)
         userAnswer.append(optionsCharacters[index])
         withAnimation {
-            showBoxInOptions[index] = false
+            showCharacterInOptions[index] = false
         }
     }
     
     func answerBoxSelected(index: Int) {
-        let rectangleIdIndex = rectanglesIdAnswer[index]
-        optionsCharacters[rectangleIdIndex] = userAnswer[index]
         withAnimation {
-            showBoxInOptions[rectangleIdIndex] = true
+            showCharacterInOptions[rectanglesIdIndices[index]] = true
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
             self.userAnswer.remove(at: index)
-            self.rectanglesIdAnswer.remove(at: index)
+            self.rectanglesIdIndices.remove(at: index)
         }
     }
 }
