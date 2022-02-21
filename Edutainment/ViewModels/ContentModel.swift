@@ -19,12 +19,14 @@ class ContentModel: ObservableObject {
     @Published var multiplicandSelected = 2
     
     // Sorting Game
-    var correctAnswer = [[String]]()
+    var correctAnswerInSortingGame = [[String]]()
     @Published var optionsCharacters = [String]()
     @Published var multiplier = [Int](2...10)
-    @Published var userAnswer = [String]()
+    @Published var userAnswerInSortingGame = [String]()
     @Published var rectanglesIdIndices = [Int]()
     @Published var showCharacterInOptions = Array(repeating: true, count: 5)
+    @Published var userAnsweredRightInSortingGame: Bool?
+    @Published var animateAnswerInSortingGame = false
     
     func startGame() {
         withAnimation {
@@ -55,8 +57,8 @@ class ContentModel: ObservableObject {
                 String(multiplicandSelected * randonMultiplier)
             ]
         ]
-        correctAnswer = correctAnswers
-        let correctAnswerShuffled = correctAnswer.first?.shuffled() ?? [""]
+        correctAnswerInSortingGame = correctAnswers
+        let correctAnswerShuffled = correctAnswerInSortingGame.first?.shuffled() ?? [""]
         for i in 0..<correctAnswerShuffled.count {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3 + (Double(i)/10 + 0.1)) {
                 self.optionsCharacters.append(correctAnswerShuffled[i])
@@ -66,7 +68,7 @@ class ContentModel: ObservableObject {
     
     func optionsBoxSelected(index: Int) {
         rectanglesIdIndices.append(index)
-        userAnswer.append(optionsCharacters[index])
+        userAnswerInSortingGame.append(optionsCharacters[index])
         withAnimation {
             showCharacterInOptions[index] = false
         }
@@ -77,8 +79,22 @@ class ContentModel: ObservableObject {
             showCharacterInOptions[rectanglesIdIndices[index]] = true
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-            self.userAnswer.remove(at: index)
+            self.userAnswerInSortingGame.remove(at: index)
             self.rectanglesIdIndices.remove(at: index)
+        }
+    }
+    
+    func checkAnswerInSortingGame() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            if self.correctAnswerInSortingGame.contains(self.userAnswerInSortingGame) {
+                self.userAnsweredRightInSortingGame = true
+            } else {
+                self.userAnsweredRightInSortingGame = false
+            }
+            self.animateAnswerInSortingGame = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.animateAnswerInSortingGame = false
+            }
         }
     }
 }

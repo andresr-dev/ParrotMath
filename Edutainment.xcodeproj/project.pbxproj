@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		814510F927C14D4A00FB3B4D /* SortNumbersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814510F827C14D4A00FB3B4D /* SortNumbersView.swift */; };
+		814510F927C14D4A00FB3B4D /* SortingNumbersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814510F827C14D4A00FB3B4D /* SortingNumbersView.swift */; };
 		814510FE27C1522400FB3B4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814510FD27C1522400FB3B4D /* ContentView.swift */; };
 		81F12DA027C0186A00850E2F /* EdutainmentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F12D9F27C0186A00850E2F /* EdutainmentApp.swift */; };
 		81F12DA427C0186B00850E2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81F12DA327C0186B00850E2F /* Assets.xcassets */; };
@@ -25,7 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		814510F827C14D4A00FB3B4D /* SortNumbersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortNumbersView.swift; sourceTree = "<group>"; };
+		814510F827C14D4A00FB3B4D /* SortingNumbersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingNumbersView.swift; sourceTree = "<group>"; };
 		814510FD27C1522400FB3B4D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		81F12D9C27C0186A00850E2F /* Edutainment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Edutainment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81F12D9F27C0186A00850E2F /* EdutainmentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdutainmentApp.swift; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 		8145110427C1913300FB3B4D /* ArrangeNumbers */ = {
 			isa = PBXGroup;
 			children = (
-				814510F827C14D4A00FB3B4D /* SortNumbersView.swift */,
+				814510F827C14D4A00FB3B4D /* SortingNumbersView.swift */,
 			);
 			path = ArrangeNumbers;
 			sourceTree = "<group>";
@@ -253,7 +253,7 @@
 				81F12DBA27C039D800850E2F /* ContentModel.swift in Sources */,
 				81F12DB227C0218B00850E2F /* MultiplicationSelectionView.swift in Sources */,
 				81F12DC827C05DFD00850E2F /* LevelButton.swift in Sources */,
-				814510F927C14D4A00FB3B4D /* SortNumbersView.swift in Sources */,
+				814510F927C14D4A00FB3B4D /* SortingNumbersView.swift in Sources */,
 				81F12DC227C0413100850E2F /* Enums & Structs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

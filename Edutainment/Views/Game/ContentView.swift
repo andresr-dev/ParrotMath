@@ -21,7 +21,7 @@ struct ContentView: View {
                     )
             }
             if !vm.settingsMode {
-                SortNumbersView()
+                SortingNumbersView()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .transition(.asymmetric(
                         insertion: .move(edge: .trailing),

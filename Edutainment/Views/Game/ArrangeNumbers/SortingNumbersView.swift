@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SortNumbersView: View {
+struct SortingNumbersView: View {
     @EnvironmentObject var vm: ContentModel
     
     let columns: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 15, alignment: .center), count: 3)
@@ -31,17 +31,22 @@ struct SortNumbersView: View {
         .onAppear {
             vm.startSortingGame()
         }
+        .onChange(of: vm.userAnswerInSortingGame) { userAnswer in
+            if userAnswer.count == vm.optionsCharacters.count {
+                vm.checkAnswerInSortingGame()
+            }
+        }
     }
 }
 
-struct SortNumbersView_Previews: PreviewProvider {
+struct SortingNumbersView_Previews: PreviewProvider {
     static var previews: some View {
-        SortNumbersView()
+        SortingNumbersView()
             .environmentObject(ContentModel())
     }
 }
 
-extension SortNumbersView {
+extension SortingNumbersView {
     private var title: some View {
         Text("Sort the numbers")
             .font(.largeTitle)
@@ -54,12 +59,12 @@ extension SortNumbersView {
                 .shadow(radius: 4)
             
             LazyVGrid(columns: columns, spacing: 18) {
-                ForEach(0..<vm.userAnswer.count, id: \.self) { index in
+                ForEach(0..<vm.userAnswerInSortingGame.count, id: \.self) { index in
                     
                     let showCharacterIndex = vm.rectanglesIdIndices[index]
                     if !vm.showCharacterInOptions[showCharacterIndex] {
                         character(
-                            text: vm.userAnswer[index],
+                            text: vm.userAnswerInSortingGame[index],
                             rectangleId: vm.rectanglesIdIndices[index]
                         )
                             .onTapGesture {
@@ -86,7 +91,7 @@ extension SortNumbersView {
                         }
                 } else {
                     RoundedRectangle(cornerRadius: 15)
-                        .stroke(lineWidth: 0.7)
+                        .stroke(lineWidth: 0.6)
                         .frame(width: 90, height: 90)
                 }
             }
@@ -95,9 +100,14 @@ extension SortNumbersView {
         .frame(height: frameHeight, alignment: .topLeading)
     }
     private func character(text: String, rectangleId: Int) -> some View {
-        ZStack {
+        let userAnsweredRight = vm.userAnsweredRightInSortingGame
+        return ZStack {
             RoundedRectangle(cornerRadius: 15)
-                .fill(Color.theme.darkBlue)
+                .fill(
+                    userAnsweredRight == nil ? Color.theme.darkBlue :
+                        userAnsweredRight! ? Color.green : Color.red
+                )
+                .animation(.spring(), value: userAnsweredRight)
                 .frame(width: 90, height: 90)
             
             Text(text)
@@ -105,5 +115,9 @@ extension SortNumbersView {
                 .foregroundColor(.white)
         }
         .matchedGeometryEffect(id: rectangleId, in: namespace)
+        .scaleEffect(vm.animateAnswerInSortingGame ? 1.1 : 1.0)
+        .offset(y: vm.animateAnswerInSortingGame ? -10 : 0)
+        .animation(.spring(),
+                   value: vm.animateAnswerInSortingGame)
     }
 }
