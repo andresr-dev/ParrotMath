@@ -20,9 +20,11 @@ class ContentModel: ObservableObject {
     
     // Sorting Game
     var correctAnswer = [[String]]()
-    @Published var optionCharacters = [String]()
+    @Published var optionsCharacters = [String]()
+    @Published var multiplier = [Int](2...10)
     @Published var userAnswer = [String]()
-    @Published var multiplier = Array(2...10)
+    @Published var rectanglesIdAnswer = [Int]()
+    @Published var showBoxInOptions = Array(repeating: true, count: 5)
     
     func startGame() {
         withAnimation {
@@ -53,19 +55,34 @@ class ContentModel: ObservableObject {
                 String(multiplicandSelected * randonMultiplier)
             ]
         ]
-        
         correctAnswer = correctAnswers
-
-        optionCharacters = correctAnswer.first?.shuffled() ?? ["ERROR"]
+        
+        let correctAnswerShuffled = correctAnswer.first?.shuffled() ?? [""]
+        
+        for i in 0..<correctAnswerShuffled.count {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3 + (Double(i)/10 + 0.1)) {
+                self.optionsCharacters.append(correctAnswerShuffled[i])
+            }
+        }
     }
     
-    func optionBoxSelected(index: Int) {
-        userAnswer.append(optionCharacters[index])
-        optionCharacters.remove(at: index)
+    func optionsBoxSelected(index: Int) {
+        rectanglesIdAnswer.append(index)
+        userAnswer.append(optionsCharacters[index])
+        withAnimation {
+            showBoxInOptions[index] = false
+        }
     }
     
     func answerBoxSelected(index: Int) {
-        optionCharacters.append(userAnswer[index])
-        userAnswer.remove(at: index)
+        let rectangleIdIndex = rectanglesIdAnswer[index]
+        optionsCharacters[rectangleIdIndex] = userAnswer[index]
+        withAnimation {
+            showBoxInOptions[rectangleIdIndex] = true
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            self.userAnswer.remove(at: index)
+            self.rectanglesIdAnswer.remove(at: index)
+        }
     }
 }

@@ -11,6 +11,8 @@ struct SortNumbersView: View {
     @EnvironmentObject var vm: ContentModel
     
     let columns: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 15, alignment: .center), count: 3)
+    let frameHeight: CGFloat = 233
+    @Namespace private var namespace
     
     var body: some View {
         ZStack {
@@ -25,32 +27,50 @@ struct SortNumbersView: View {
                 ZStack(alignment: .topLeading) {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(.white)
-                        .frame(height: 235)
                         .shadow(radius: 4)
                     
-                    LazyVGrid(columns: columns, spacing: 20) {
+                    LazyVGrid(columns: columns, spacing: 18) {
                         ForEach(0..<vm.userAnswer.count, id: \.self) { index in
-                            BoxNumberView(text: vm.userAnswer[index])
-                                .onTapGesture {
-                                    vm.answerBoxSelected(index: index)
-                                }
+                            
+                            if !vm.showBoxInOptions[vm.rectanglesIdAnswer[index]] {
+                                
+                                BoxNumberView(
+                                    text: vm.userAnswer[index],
+                                    rectangleId: vm.rectanglesIdAnswer[index],
+                                    namespace: namespace
+                                )
+                                    .onTapGesture {
+                                        vm.answerBoxSelected(index: index)
+                                    }
+                            }
                         }
                     }
                     .padding()
                 }
+                .frame(height: frameHeight)
                 
                 Spacer()
                 
-                LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach(0..<vm.optionCharacters.count, id: \.self) { index in
-                        BoxNumberView(text: vm.optionCharacters[index])
-                            .onTapGesture {
-                                vm.optionBoxSelected(index: index)
-                            }
+                LazyVGrid(columns: columns, spacing: 18) {
+                    ForEach(0..<vm.optionsCharacters.count, id: \.self) { index in
+                        
+                        if vm.showBoxInOptions[index] {
+                            
+                            BoxNumberView(
+                                text: vm.optionsCharacters[index],
+                                rectangleId: index,
+                                namespace: namespace
+                            )
+                                .onTapGesture {
+                                    vm.optionsBoxSelected(index: index)
+                                }
+                        }
                     }
                 }
+                .padding()
+                .frame(height: frameHeight, alignment: .topLeading)
             }
-            .padding()
+            .padding([.top, .horizontal])
         }
         .onAppear {
             vm.startSortingGame()

@@ -14,6 +14,7 @@ struct ContentView: View {
         ZStack {
             if vm.settingsMode {
                 OnboardingView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .transition(.asymmetric(
                         insertion: .move(edge: .trailing),
                         removal: .move(edge: .leading))
@@ -21,6 +22,7 @@ struct ContentView: View {
             }
             if !vm.settingsMode {
                 SortNumbersView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .transition(.asymmetric(
                         insertion: .move(edge: .trailing),
                         removal: .move(edge: .leading))
