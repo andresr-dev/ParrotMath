@@ -44,13 +44,14 @@ extension MultiplicationSelectionView {
     private var title: some View {
         Text("Math Parrot")
             .font(.largeTitle)
-            .fontWeight(.bold)
+            .fontWeight(.semibold)
             .padding(.top)
     }
     private var message: some View {
         Text("Choose a table:")
-            .font(.title)
+            .font(.largeTitle)
             .fontWeight(.bold)
+            .padding(.bottom, 10)
     }
     private var tablesGrid: some View {
         LazyVGrid(columns: columns, spacing: 20) {

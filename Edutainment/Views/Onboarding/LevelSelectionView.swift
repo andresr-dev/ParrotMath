@@ -46,9 +46,9 @@ extension LevelSelectionView {
     }
     private var message: some View {
         Text("Choose a level:")
-            .font(.title)
-            .fontWeight(.bold)
-            .padding(.bottom, 5)
+            .font(.largeTitle)
+            .fontWeight(.semibold)
+            .padding(.bottom, 10)
     }
     private var levelButtons: some View {
         ForEach(vm.levels, id: \.self) { level in
