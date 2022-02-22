@@ -26,6 +26,7 @@ struct LevelSelectionView: View {
                 Spacer()
                 continueButton
             }
+            .padding(.bottom)
         }
     }
 }
@@ -55,11 +56,11 @@ extension LevelSelectionView {
             Button {
                 vm.levelSelected = level
             } label: {
-                LevelButton(
-                    text: level.rawValue.capitalized,
-                    backgroundColor: vm.levelSelected == level ? .white : .theme.darkBlue,
-                    foregroundColor: vm.levelSelected == level ? .black : .white
-                )
+                Text(level.rawValue.capitalized)
+                    .asDefaultButton(
+                        foregroundColor: vm.levelSelected == level ? .black : .white,
+                        backgroundColor: vm.levelSelected == level ? .white : .theme.darkBlue
+                    )
             }
         }
     }
@@ -67,7 +68,9 @@ extension LevelSelectionView {
         Button {
             vm.startGame()
         } label: {
-            ContinueLabel(text: "Start Game!")
+            Text("Start Game!")
+                .asDefaultButton(foregroundColor: .black, backgroundColor: .white)
+                .shadow(radius: 3)
         }
     }
 }

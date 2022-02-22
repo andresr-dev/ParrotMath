@@ -21,8 +21,9 @@ struct ContentView: View {
         }
         if !vm.settingsMode {
             NavigationView {
-                SortingNumbersView()
+                //SortingNumbersView()
                 //TypeAnswerView()
+                YesOrNoView()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .transition(.asymmetric(

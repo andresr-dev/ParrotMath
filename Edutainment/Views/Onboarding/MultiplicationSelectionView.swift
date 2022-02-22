@@ -28,6 +28,7 @@ struct MultiplicationSelectionView: View {
                 Spacer()
                 continueButton
             }
+            .padding(.bottom)
         }
     }
 }
@@ -75,7 +76,9 @@ extension MultiplicationSelectionView {
                 vm.onboardingPageSelected += 1
             }
         } label: {
-            ContinueLabel(text: "Continue")
+            Text("Continue")
+                .asDefaultButton(foregroundColor: .black, backgroundColor: .white)
+                .shadow(radius: 3)
         }
     }
 }

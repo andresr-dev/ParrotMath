@@ -11,3 +11,6 @@ enum Level: String, CaseIterable {
     case easy, normal, expert
 }
 
+enum YesOrNoOption: String, CaseIterable {
+    case yes, no
+}
