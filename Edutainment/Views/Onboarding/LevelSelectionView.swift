@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LevelSelectionView: View {
     @EnvironmentObject var vm: ContentModel
+    var levels = Level.allCases
     
     var body: some View {
         ZStack {

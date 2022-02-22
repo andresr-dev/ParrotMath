@@ -10,8 +10,8 @@ import SwiftUI
 struct YesOrNoView: View {
     @EnvironmentObject private var vm: ContentModel
     
+    private var allOptions = YesOrNoOption.allCases
     @State private var optionSelected: YesOrNoOption?
-    @State private var allOptions = YesOrNoOption.allCases
     @State private var userAnsweredRight = false
     @State private var animateAnswer = false
     
@@ -67,10 +67,17 @@ extension YesOrNoView {
     }
     private var multiplicationView: some View {
         VStack(spacing: 0) {
-            Text(multiplication)
+            HStack {
+                Text(vm.multiplicandSelected, format: .number)
+                    .frame(width: 120, alignment: .trailing)
+                Spacer()
+                Text(" x ")
+                Spacer()
+                Text(vm.multiplier, format: .number)
+                    .frame(width: 120, alignment: .leading)
+            }
                 
             Text("=")
-                .padding(.vertical, 5)
                 .padding(.bottom, 2)
             
             Text(resultShowing, format: .number)
