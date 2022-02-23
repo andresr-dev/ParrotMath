@@ -12,4 +12,9 @@ extension View {
     func asDefaultButton(foregroundColor: Color, backgroundColor: Color) -> some View {
         modifier(DefaultContinueButton(foregroundColor: foregroundColor, backgroundColor: backgroundColor))
     }
+    func navBarBackgroundColor(color: UIColor) -> some View {
+        onAppear {
+            UINavigationBar.appearance().backgroundColor = color
+        }
+    }
 }

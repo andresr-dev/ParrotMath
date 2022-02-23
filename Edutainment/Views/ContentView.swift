@@ -20,16 +20,32 @@ struct ContentView: View {
                 )
         }
         if !vm.settingsMode {
-            NavigationView {
-                //SortingNumbersView()
-                //TypeAnswerView()
-                YesOrNoView()
+            switch vm.typeOfGameShowing {
+            case .deciding:
+                NavigationView {
+                    YesOrNoView()
+                }
+                .transition(.asymmetric(
+                    insertion: .move(edge: .trailing),
+                    removal: .move(edge: .leading))
+                )
+            case .sorting:
+                NavigationView {
+                    SortingNumbersView()
+                }
+                .transition(.asymmetric(
+                    insertion: .move(edge: .trailing),
+                    removal: .move(edge: .leading))
+                )
+            case .typing:
+                NavigationView {
+                    TypeAnswerView()
+                }
+                .transition(.asymmetric(
+                    insertion: .move(edge: .trailing),
+                    removal: .move(edge: .leading))
+                )
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .transition(.asymmetric(
-                insertion: .move(edge: .trailing),
-                removal: .move(edge: .leading))
-            )
         }
     }
 }

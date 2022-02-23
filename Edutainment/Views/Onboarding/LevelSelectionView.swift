@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct LevelSelectionView: View {
-    @EnvironmentObject var vm: ContentModel
-    var levels = Level.allCases
+    @EnvironmentObject private var vm: ContentModel
+    private var levels = Level.allCases
     
     var body: some View {
         ZStack {
-            Color.theme.background
-                .ignoresSafeArea()
+            Color.theme.background.ignoresSafeArea()
             
-            VStack(spacing: 18) {
+            VStack(spacing: 20) {
                 title
                 Spacer()
                 LogoTitleView()
@@ -27,7 +26,7 @@ struct LevelSelectionView: View {
                 Spacer()
                 continueButton
             }
-            .padding(.bottom)
+            .padding()
         }
     }
 }
@@ -50,10 +49,10 @@ extension LevelSelectionView {
         Text("Choose a level:")
             .font(.largeTitle)
             .fontWeight(.semibold)
-            .padding(.bottom, 10)
+            .padding(.bottom, 15)
     }
     private var levelButtons: some View {
-        ForEach(vm.levels, id: \.self) { level in
+        ForEach(levels, id: \.self) { level in
             Button {
                 vm.levelSelected = level
             } label: {
@@ -68,10 +67,10 @@ extension LevelSelectionView {
     private var continueButton: some View {
         Button {
             vm.startGame()
+            vm.newQuestion()
         } label: {
             Text("Start Game!")
                 .asDefaultButton(foregroundColor: .black, backgroundColor: .white)
-                .shadow(radius: 3)
         }
     }
 }

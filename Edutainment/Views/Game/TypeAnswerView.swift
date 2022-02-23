@@ -24,9 +24,14 @@ struct TypeAnswerView: View {
         ZStack(alignment: .top) {
             Color.theme.background.ignoresSafeArea()
             
-            multiplicationCard
+            VStack(alignment: .leading) {
+                title
+                multiplicationCard
+            }
+            .padding()
         }
-        .navigationTitle("Type the answer")
+        .navigationTitle("Question \(vm.currentQuestion)/\(vm.numberOfQuestions)")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()
@@ -55,6 +60,11 @@ struct TypeAnswerView_Previews: PreviewProvider {
 }
 
 extension TypeAnswerView {
+    private var title: some View {
+        Text("Type the answer")
+            .font(.largeTitle.weight(.semibold))
+            .padding(5)
+    }
     private var multiplicationCard: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 30)
@@ -64,7 +74,7 @@ extension TypeAnswerView {
         }
         .frame(maxWidth: .infinity)
         .frame(height: 300)
-        .padding(30)
+        .padding()
     }
     private var multiplicationView: some View {
         VStack(spacing: 0) {
@@ -95,6 +105,7 @@ extension TypeAnswerView {
                 .focused($keyboardIsFocused)
                 .disabled(userAnsweredRight != nil)
         }
+        //.foregroundColor(.black)
     }
 }
 

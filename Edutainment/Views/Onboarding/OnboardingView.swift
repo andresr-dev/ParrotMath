@@ -7,15 +7,15 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    @EnvironmentObject var vm: ContentModel
+    @State private var settingShowing: TypeOfSetting = .tables
     
     var body: some View {
-        TabView(selection: $vm.onboardingPageSelected) {
-            MultiplicationSelectionView()
-                .tag(0)
+        TabView(selection: $settingShowing) {
+            MultiplicationSelectionView(settingShowing: $settingShowing)
+                .tag(TypeOfSetting.tables)
             
             LevelSelectionView()
-                .tag(1)
+                .tag(TypeOfSetting.levels)
         }
         .tabViewStyle(.page)
         .ignoresSafeArea()

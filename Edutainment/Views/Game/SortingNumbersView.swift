@@ -45,14 +45,15 @@ struct SortingNumbersView: View {
                 .ignoresSafeArea()
             
             VStack(alignment: .leading) {
-                //title
+                title
                 answerBox
                 Spacer()
                 optionsBox
             }
             .padding([.top, .horizontal])
         }
-        .navigationTitle("Sort the numbers")
+        .navigationTitle("Question \(vm.currentQuestion)/\(vm.numberOfQuestions)")
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             getOptionsCharacteres()
         }
@@ -76,7 +77,8 @@ struct SortingNumbersView_Previews: PreviewProvider {
 extension SortingNumbersView {
     private var title: some View {
         Text("Sort the numbers")
-            .font(.system(size: 40, weight: .semibold, design: .default))
+            .font(.largeTitle.weight(.semibold))
+            .padding(5)
     }
     private var answerBox: some View {
         ZStack(alignment: .topLeading) {

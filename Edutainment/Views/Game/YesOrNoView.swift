@@ -10,8 +10,8 @@ import SwiftUI
 struct YesOrNoView: View {
     @EnvironmentObject private var vm: ContentModel
     
-    private var allOptions = YesOrNoOption.allCases
-    @State private var optionSelected: YesOrNoOption?
+    private var allOptions = YesOrNo.allCases
+    @State private var optionSelected: YesOrNo?
     @State private var userAnsweredRight = false
     @State private var animateAnswer = false
     
@@ -26,17 +26,19 @@ struct YesOrNoView: View {
     }
     
     var body: some View {
-        ZStack(alignment: .top) {
+        ZStack {
             Color.theme.background.ignoresSafeArea()
             
-            VStack(spacing: 20) {
+            VStack(alignment: .leading, spacing: 20) {
+                title
                 multiplicationCard
                 Spacer()
                 buttons
             }
-            .padding(.bottom)
+            .padding()
         }
-        .navigationTitle("Is this correct?")
+        .navigationTitle("Question \(vm.currentQuestion)/\(vm.numberOfQuestions)")
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             setProperties()
         }
@@ -53,28 +55,31 @@ struct YesOrNoView_Previews: PreviewProvider {
 }
 
 extension YesOrNoView {
+    private var title: some View {
+        Text("Is this correct?")
+            .font(.largeTitle.weight(.semibold))
+            .padding(5)
+    }
     private var multiplicationCard: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 40)
                 .fill(.white)
                 .shadow(radius: 3)
+                
             multiplicationView
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 265)
-        .padding(20)
-        .padding(.horizontal, 20)
+        .frame(height: 250)
+        .padding(.horizontal, 30)
     }
     private var multiplicationView: some View {
         VStack(spacing: 0) {
-            HStack {
+            HStack(spacing: 0) {
                 Text(vm.multiplicandSelected, format: .number)
-                    .frame(width: 120, alignment: .trailing)
-                Spacer()
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 Text(" x ")
-                Spacer()
                 Text(vm.multiplier, format: .number)
-                    .frame(width: 120, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
                 
             Text("=")
@@ -82,7 +87,7 @@ extension YesOrNoView {
             
             Text(resultShowing, format: .number)
         }
-        .font(.system(size: 60, weight: .semibold, design: .default))
+        .font(.system(size: 57, weight: .semibold, design: .default))
     }
     private var buttons: some View {
         ForEach(allOptions, id: \.self) { option in
@@ -93,7 +98,7 @@ extension YesOrNoView {
                     .asDefaultButton(
                         foregroundColor: .white,
                         backgroundColor: optionSelected == option ?
-                        userAnsweredRight ? .green : .red : .theme.darkBlue
+                        userAnsweredRight ? Color.theme.green : .red : .theme.darkBlue
                     )
                     .scaleEffect((optionSelected == option && animateAnswer) ? 1.1 : 1.0)
                     .offset(y: (optionSelected == option && animateAnswer) ? -10 : 0)
@@ -113,7 +118,7 @@ extension YesOrNoView {
         posibleResults.append(correctAnswer - 1)
         resultShowing = posibleResults.randomElement() ?? 0
     }
-    private func buttonPressed(option: YesOrNoOption) {
+    private func buttonPressed(option: YesOrNo) {
         optionSelected = option
         let correctAnswerIsShowing = correctAnswer == resultShowing
         if correctAnswerIsShowing {
@@ -122,7 +127,7 @@ extension YesOrNoView {
             userAnsweredRight = optionSelected == .no
         }
         animateAnswer = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
             animateAnswer = false
         }
     }

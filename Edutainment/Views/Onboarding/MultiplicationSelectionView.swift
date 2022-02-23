@@ -10,6 +10,7 @@ import SwiftUI
 struct MultiplicationSelectionView: View {
     
     @EnvironmentObject var vm: ContentModel
+    @Binding var settingShowing: TypeOfSetting
     
     let columns: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 5, alignment: .center), count: 3)
     
@@ -20,24 +21,23 @@ struct MultiplicationSelectionView: View {
             
             VStack(spacing: 20) {
                 title
-                Spacer()
+                Spacer(minLength: 0)
                 LogoTitleView()
-                Spacer()
+                Spacer(minLength: 0)
                 message
                 tablesGrid
-                Spacer()
+                Spacer(minLength: 0)
                 continueButton
             }
-            .padding(.bottom)
+            .padding()
         }
     }
 }
 
 struct MultiplicationSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        MultiplicationSelectionView()
+        MultiplicationSelectionView(settingShowing: .constant(.tables))
             .environmentObject(ContentModel())
-            //.preferredColorScheme(.dark)
     }
 }
 
@@ -52,7 +52,7 @@ extension MultiplicationSelectionView {
         Text("Choose a table:")
             .font(.largeTitle)
             .fontWeight(.bold)
-            .padding(.bottom, 10)
+            .padding(.bottom, 5)
     }
     private var tablesGrid: some View {
         LazyVGrid(columns: columns, spacing: 20) {
@@ -68,17 +68,15 @@ extension MultiplicationSelectionView {
                 }
             }
         }
-        .padding(.horizontal)
     }
     private var continueButton: some View {
         Button {
             withAnimation {
-                vm.onboardingPageSelected += 1
+                settingShowing = .levels
             }
         } label: {
             Text("Continue")
                 .asDefaultButton(foregroundColor: .black, backgroundColor: .white)
-                .shadow(radius: 3)
         }
     }
 }

@@ -20,6 +20,6 @@ struct DefaultContinueButton: ViewModifier {
             .foregroundColor(foregroundColor)
             .background(backgroundColor)
             .clipShape(Capsule())
-            .padding(.horizontal)
+            .shadow(radius: 3)
     }
 }
