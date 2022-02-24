@@ -14,9 +14,11 @@ struct YesOrNoView: View {
     @State private var optionSelected: YesOrNo?
     @State private var userAnsweredRight = false
     @State private var animateAnswer = false
+    @State private var animateLogo = false
     
     @State private var posibleResults = [Int]()
     @State private var resultShowing = 0
+    @State private var showWrongAnswerCard = false
     
     var multiplication: String {
         "\(vm.multiplicandSelected) x \(vm.multiplier)"
@@ -26,17 +28,30 @@ struct YesOrNoView: View {
     }
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottom) {
             Color.theme.background.ignoresSafeArea()
             
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(spacing: 20) {
                 title
                 multiplicationCard
-                Spacer()
+                Spacer(minLength: 0)
+                if userAnsweredRight {
+                    logo.transition(.scale.animation(.spring()))
+                }
+                Spacer(minLength: 0)
                 buttons
             }
             .padding()
+            .padding(.bottom, 30)
+            
+            if showWrongAnswerCard {
+                WrongAnswerCard(
+                    multiplication: multiplication,
+                    answer: correctAnswer)
+                    .transition(.move(edge: .bottom))
+            }
         }
+        .ignoresSafeArea(.container, edges: .bottom)
         .navigationTitle("Question \(vm.currentQuestion)/\(vm.numberOfQuestions)")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
@@ -59,6 +74,7 @@ extension YesOrNoView {
         Text("Is this correct?")
             .font(.largeTitle.weight(.semibold))
             .padding(5)
+            .frame(maxWidth: .infinity, alignment: .leading)
     }
     private var multiplicationCard: some View {
         ZStack {
@@ -107,6 +123,17 @@ extension YesOrNoView {
             .disabled(optionSelected != nil)
         }
     }
+    private var logo: some View {
+        LogoView(animate: $animateLogo)
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                    animateLogo = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
+                        vm.newQuestion()
+                    }
+                }
+            }
+    }
 }
 
 // MARK: - FUNCTIONS
@@ -125,6 +152,14 @@ extension YesOrNoView {
             userAnsweredRight = optionSelected == .yes
         } else {
             userAnsweredRight = optionSelected == .no
+        }
+        vm.saveAnswer(userAnsweredRight: userAnsweredRight)
+        if !userAnsweredRight {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                withAnimation(.easeInOut) {
+                    showWrongAnswerCard = true
+                }
+            }
         }
         animateAnswer = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {

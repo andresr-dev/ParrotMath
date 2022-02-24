@@ -20,7 +20,10 @@ struct SortingNumbersView: View {
     @State private var showCharacterInOptions = Array(repeating: true, count: 5)
     @State private var userAnsweredRight: Bool?
     @State private var animateAnswer = false
+    @State private var animateLogo = false
     @State private var disableButtons = false
+    
+    @State private var showWrongAnswerCard = false
     
     var correctAnswer: [[String]] {
         [[
@@ -40,18 +43,31 @@ struct SortingNumbersView: View {
     }
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottom) {
             Color.theme.background
                 .ignoresSafeArea()
             
-            VStack(alignment: .leading) {
+            VStack {
                 title
                 answerBox
-                Spacer()
+                Spacer(minLength: 0)
+                if userAnsweredRight != nil && userAnsweredRight! {
+                    logo.transition(.scale.animation(.spring()))
+                }
+                Spacer(minLength: 0)
                 optionsBox
             }
-            .padding([.top, .horizontal])
+            .padding()
+            .padding(.bottom)
+            
+            if showWrongAnswerCard {
+                WrongAnswerCard(
+                    multiplication: "\(vm.multiplicandSelected) x \(vm.multiplier)",
+                    answer: vm.multiplicandSelected * vm.multiplier)
+                    .transition(.move(edge: .bottom))
+            }
         }
+        .ignoresSafeArea(.container, edges: .bottom)
         .navigationTitle("Question \(vm.currentQuestion)/\(vm.numberOfQuestions)")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
@@ -79,6 +95,7 @@ extension SortingNumbersView {
         Text("Sort the numbers")
             .font(.largeTitle.weight(.semibold))
             .padding(5)
+            .frame(maxWidth: .infinity, alignment: .leading)
     }
     private var answerBox: some View {
         ZStack(alignment: .topLeading) {
@@ -148,6 +165,17 @@ extension SortingNumbersView {
         .offset(y: animateAnswer ? -10 : 0)
         .animation(.spring(), value: animateAnswer)
     }
+    private var logo: some View {
+        LogoView(animate: $animateLogo)
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                    animateLogo = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
+                        vm.newQuestion()
+                    }
+                }
+            }
+    }
 }
 
 // MARK: - FUNCTIONS
@@ -187,6 +215,16 @@ extension SortingNumbersView {
                 self.userAnsweredRight = true
             } else {
                 self.userAnsweredRight = false
+            }
+            if let userAnsweredRight = self.userAnsweredRight {
+                vm.saveAnswer(userAnsweredRight: userAnsweredRight)
+                if !userAnsweredRight {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                        withAnimation(.easeInOut) {
+                            showWrongAnswerCard = true
+                        }
+                    }
+                }
             }
             self.animateAnswer = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {

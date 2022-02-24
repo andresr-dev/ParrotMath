@@ -20,32 +20,33 @@ struct ContentView: View {
                 )
         }
         if !vm.settingsMode {
-            switch vm.typeOfGameShowing {
-            case .deciding:
-                NavigationView {
-                    YesOrNoView()
+                if vm.typeOfGameShowing == .deciding {
+                    NavigationView {
+                        YesOrNoView()
+                    }
+                    .transition(.asymmetric(
+                            insertion: .move(edge: .trailing),
+                            removal: .move(edge: .leading))
+                    )
                 }
-                .transition(.asymmetric(
-                    insertion: .move(edge: .trailing),
-                    removal: .move(edge: .leading))
-                )
-            case .sorting:
-                NavigationView {
-                    SortingNumbersView()
+                if vm.typeOfGameShowing == .sorting {
+                    NavigationView {
+                        SortingNumbersView()
+                    }
+                    .transition(.asymmetric(
+                            insertion: .move(edge: .trailing),
+                            removal: .move(edge: .leading))
+                    )
                 }
-                .transition(.asymmetric(
-                    insertion: .move(edge: .trailing),
-                    removal: .move(edge: .leading))
-                )
-            case .typing:
-                NavigationView {
-                    TypeAnswerView()
+                if vm.typeOfGameShowing == .typing {
+                    NavigationView {
+                        TypeAnswerView()
+                    }
+                    .transition(.asymmetric(
+                            insertion: .move(edge: .trailing),
+                            removal: .move(edge: .leading))
+                    )
                 }
-                .transition(.asymmetric(
-                    insertion: .move(edge: .trailing),
-                    removal: .move(edge: .leading))
-                )
-            }
         }
     }
 }
