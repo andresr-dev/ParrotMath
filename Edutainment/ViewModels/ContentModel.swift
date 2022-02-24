@@ -22,9 +22,9 @@ class ContentModel: ObservableObject {
     
     private var userAnswers = [Int:Bool]()
     
-    private var typeOfGames: [TypeOfGame] = [.deciding, .sorting, .typing]
-    @Published var typeOfGameShowing: TypeOfGame = .deciding
-    private var typeOfGameShowingIndex = 0
+    private var screens = TypeOfScreen.allCases
+    @Published var screenShowing: TypeOfScreen = .decideGame
+    private var screenShowingIndex = 0
         
     func startGame() {
         switch levelSelected {
@@ -44,7 +44,7 @@ class ContentModel: ObservableObject {
         updateMultiplier()
         if userAnswers.isNotEmpty {
             updateCurrentQuestion()
-            updateTypeOfGameShowing()
+            updateScreenShowing()
         }
     }
     private func updateMultiplier() {
@@ -74,15 +74,20 @@ class ContentModel: ObservableObject {
             currentQuestion = 1
         }
     }
-    private func updateTypeOfGameShowing() {
-        let currentIndex = typeOfGames.firstIndex(of: typeOfGameShowing) ?? 0
-        if currentIndex < typeOfGames.count - 1 {
-            typeOfGameShowingIndex += 1
+    private func updateScreenShowing() {
+        // Check if it's last question
+        if currentQuestion == numberOfQuestions {
+            screenShowingIndex = screens.count - 1
         } else {
-            typeOfGameShowingIndex = 0
+            let currentIndex = screens.firstIndex(of: screenShowing) ?? 0
+            if currentIndex < screens.count - 2 {
+                screenShowingIndex += 1
+            } else {
+                screenShowingIndex = 0
+            }
         }
         withAnimation {
-            typeOfGameShowing = typeOfGames[typeOfGameShowingIndex]
+            screenShowing = screens[screenShowingIndex]
         }
     }
     func saveAnswer(userAnsweredRight: Bool) {
@@ -91,8 +96,10 @@ class ContentModel: ObservableObject {
             numberOfQuestions += 1
         }
     }
-    func finishGame() {
+    func playAgain() {
         multiplierOptions = Set(2...10)
         userAnswers = [Int:Bool]()
+        settingsMode = true
+        screenShowing = .decideGame
     }
 }

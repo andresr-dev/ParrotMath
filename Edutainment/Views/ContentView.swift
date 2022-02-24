@@ -20,33 +20,27 @@ struct ContentView: View {
                 )
         }
         if !vm.settingsMode {
-                if vm.typeOfGameShowing == .deciding {
-                    NavigationView {
-                        YesOrNoView()
-                    }
+            if vm.screenShowing == .decideGame {
+                YesOrNoView()
                     .transition(.asymmetric(
-                            insertion: .move(edge: .trailing),
-                            removal: .move(edge: .leading))
+                        insertion: .move(edge: .trailing),
+                        removal: .move(edge: .leading))
                     )
-                }
-                if vm.typeOfGameShowing == .sorting {
-                    NavigationView {
-                        SortingNumbersView()
-                    }
+            }
+            if vm.screenShowing == .sortGame {
+                SortingNumbersView()
                     .transition(.asymmetric(
-                            insertion: .move(edge: .trailing),
-                            removal: .move(edge: .leading))
+                        insertion: .move(edge: .trailing),
+                        removal: .move(edge: .leading))
                     )
-                }
-                if vm.typeOfGameShowing == .typing {
-                    NavigationView {
-                        TypeAnswerView()
-                    }
+            }
+            if vm.screenShowing == .typeGame {
+                TypeAnswerView()
                     .transition(.asymmetric(
-                            insertion: .move(edge: .trailing),
-                            removal: .move(edge: .leading))
+                        insertion: .move(edge: .trailing),
+                        removal: .move(edge: .leading))
                     )
-                }
+            }
         }
     }
 }

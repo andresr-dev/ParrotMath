@@ -181,8 +181,7 @@ extension SortingNumbersView {
 // MARK: - FUNCTIONS
 
 extension SortingNumbersView {
-    
-    func getOptionsCharacteres() {
+    private func getOptionsCharacteres() {
         let correctAnswerShuffled = correctAnswer.first?.shuffled() ?? [""]
         for i in 0..<correctAnswerShuffled.count {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3 + (Double(i)/10 + 0.1)) {
@@ -190,16 +189,14 @@ extension SortingNumbersView {
             }
         }
     }
-    
-    func optionsBoxSelected(index: Int) {
+    private func optionsBoxSelected(index: Int) {
         rectanglesIdIndices.append(index)
         userAnswer.append(optionsCharacters[index])
         withAnimation {
             showCharacterInOptions[index] = false
         }
     }
-    
-    func answerBoxSelected(index: Int) {
+    private func answerBoxSelected(index: Int) {
         withAnimation {
             showCharacterInOptions[rectanglesIdIndices[index]] = true
         }
@@ -208,8 +205,7 @@ extension SortingNumbersView {
             self.rectanglesIdIndices.remove(at: index)
         }
     }
-    
-    func checkAnswer() {
+    private func checkAnswer() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             if self.correctAnswer.contains(self.userAnswer) {
                 self.userAnsweredRight = true

@@ -14,6 +14,7 @@
 		814510F927C14D4A00FB3B4D /* SortingNumbersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814510F827C14D4A00FB3B4D /* SortingNumbersView.swift */; };
 		814510FE27C1522400FB3B4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814510FD27C1522400FB3B4D /* ContentView.swift */; };
 		819B797327C7ECEB00A48832 /* WrongAnswerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819B797227C7ECEB00A48832 /* WrongAnswerCard.swift */; };
+		819B797727C80C1500A48832 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819B797627C80C1500A48832 /* ResultView.swift */; };
 		819D1FFF27C7DEB200414189 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819D1FFE27C7DEB200414189 /* Collection.swift */; };
 		81E6BAF727C5497C00A7EA7B /* TypeAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E6BAF627C5497C00A7EA7B /* TypeAnswerView.swift */; };
 		81F12DA027C0186A00850E2F /* EdutainmentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F12D9F27C0186A00850E2F /* EdutainmentApp.swift */; };
@@ -37,6 +38,7 @@
 		814510F827C14D4A00FB3B4D /* SortingNumbersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingNumbersView.swift; sourceTree = "<group>"; };
 		814510FD27C1522400FB3B4D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		819B797227C7ECEB00A48832 /* WrongAnswerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongAnswerCard.swift; sourceTree = "<group>"; };
+		819B797627C80C1500A48832 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		819D1FFE27C7DEB200414189 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		81E6BAF627C5497C00A7EA7B /* TypeAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAnswerView.swift; sourceTree = "<group>"; };
 		81F12D9C27C0186A00850E2F /* Edutainment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Edutainment.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +72,7 @@
 				814510F827C14D4A00FB3B4D /* SortingNumbersView.swift */,
 				81E6BAF627C5497C00A7EA7B /* TypeAnswerView.swift */,
 				8134059327C5844600ADCD77 /* YesOrNoView.swift */,
+				819B797627C80C1500A48832 /* ResultView.swift */,
 				819B797127C7ECC100A48832 /* Common */,
 			);
 			path = Game;
@@ -268,6 +271,7 @@
 				81F12DB027C020C400850E2F /* OnboardingView.swift in Sources */,
 				81E6BAF727C5497C00A7EA7B /* TypeAnswerView.swift in Sources */,
 				819D1FFF27C7DEB200414189 /* Collection.swift in Sources */,
+				819B797727C80C1500A48832 /* ResultView.swift in Sources */,
 				814510FE27C1522400FB3B4D /* ContentView.swift in Sources */,
 				8134059927C589D600ADCD77 /* View.swift in Sources */,
 				81F12DC627C05D3800850E2F /* LevelSelectionView.swift in Sources */,

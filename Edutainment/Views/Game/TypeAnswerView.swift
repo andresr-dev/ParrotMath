@@ -143,7 +143,7 @@ extension TypeAnswerView {
 // MARK: - FUNCTIONS
 
 extension TypeAnswerView {
-    func checkAnswer() {
+    private func checkAnswer() {
         userAnsweredRight = Int(userAnswer) == correctAnswer
         animateAnswer = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {

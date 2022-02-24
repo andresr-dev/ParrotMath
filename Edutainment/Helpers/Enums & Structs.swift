@@ -15,8 +15,8 @@ enum YesOrNo: String, CaseIterable {
     case yes, no
 }
 
-enum TypeOfGame: CaseIterable {
-    case sorting, typing, deciding
+enum TypeOfScreen: CaseIterable {
+    case decideGame, sortGame, typeGame, resultView
 }
 
 enum TypeOfSetting {

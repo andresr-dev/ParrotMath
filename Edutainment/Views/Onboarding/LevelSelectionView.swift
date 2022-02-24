@@ -28,13 +28,18 @@ struct LevelSelectionView: View {
                 continueButton
             }
             .padding()
+            .padding(.vertical, 20)
         }
+        .ignoresSafeArea()
+        .navigationBarHidden(true)
     }
 }
 
 struct LevelSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        LevelSelectionView()
+        NavigationView {
+            LevelSelectionView()
+        }
             .environmentObject(ContentModel())
     }
 }

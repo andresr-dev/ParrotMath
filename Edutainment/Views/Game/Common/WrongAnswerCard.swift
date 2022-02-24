@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct WrongAnswerCard: View {
-    @EnvironmentObject var vm: ContentModel
-    let emojis = ["😔", "😫", "😟", "😩"]
+    @EnvironmentObject private var vm: ContentModel
+    private let emojis = ["😔", "😫", "😟", "😩"]
     let multiplication: String
     let answer: Int
     @State private var animate = false

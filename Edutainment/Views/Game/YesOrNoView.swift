@@ -77,16 +77,18 @@ extension YesOrNoView {
             .frame(maxWidth: .infinity, alignment: .leading)
     }
     private var multiplicationCard: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 40)
-                .fill(.white)
-                .shadow(radius: 3)
-                
-            multiplicationView
+        VStack(spacing: 0) {
+            Text(multiplication)
+            Text("=")
+                .padding(.bottom, 2)
+            Text(resultShowing, format: .number)
         }
-        .frame(maxWidth: .infinity)
-        .frame(height: 250)
+        .font(.system(size: 57, weight: .semibold, design: .default))
+        .padding()
         .padding(.horizontal, 30)
+        .background(.white)
+        .cornerRadius(30)
+        .shadow(radius: 3)
     }
     private var multiplicationView: some View {
         VStack(spacing: 0) {
