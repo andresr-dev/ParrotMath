@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8110291827C6F807006B8788 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8110291727C6F807006B8788 /* Test.swift */; };
 		8134059427C5844600ADCD77 /* YesOrNoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8134059327C5844600ADCD77 /* YesOrNoView.swift */; };
 		8134059727C588FE00ADCD77 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8134059627C588FE00ADCD77 /* ViewModifiers.swift */; };
 		8134059927C589D600ADCD77 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8134059827C589D600ADCD77 /* View.swift */; };
@@ -22,11 +23,12 @@
 		81F12DB727C026DA00850E2F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F12DB627C026DA00850E2F /* Color.swift */; };
 		81F12DBA27C039D800850E2F /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F12DB927C039D800850E2F /* ContentModel.swift */; };
 		81F12DC227C0413100850E2F /* Enums & Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F12DC127C0413100850E2F /* Enums & Structs.swift */; };
-		81F12DC427C05C4C00850E2F /* LogoTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F12DC327C05C4C00850E2F /* LogoTitleView.swift */; };
+		81F12DC427C05C4C00850E2F /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F12DC327C05C4C00850E2F /* LogoView.swift */; };
 		81F12DC627C05D3800850E2F /* LevelSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F12DC527C05D3800850E2F /* LevelSelectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8110291727C6F807006B8788 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		8134059327C5844600ADCD77 /* YesOrNoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YesOrNoView.swift; sourceTree = "<group>"; };
 		8134059627C588FE00ADCD77 /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		8134059827C589D600ADCD77 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
@@ -43,7 +45,7 @@
 		81F12DB627C026DA00850E2F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		81F12DB927C039D800850E2F /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
 		81F12DC127C0413100850E2F /* Enums & Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enums & Structs.swift"; sourceTree = "<group>"; };
-		81F12DC327C05C4C00850E2F /* LogoTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoTitleView.swift; sourceTree = "<group>"; };
+		81F12DC327C05C4C00850E2F /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		81F12DC527C05D3800850E2F /* LevelSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +122,7 @@
 				814510FD27C1522400FB3B4D /* ContentView.swift */,
 				81F12DAE27C0209000850E2F /* Onboarding */,
 				814510F727C14B8600FB3B4D /* Game */,
+				8110291727C6F807006B8788 /* Test.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -156,7 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				81F12DB327C0260400850E2F /* MultiplicationIcon.swift */,
-				81F12DC327C05C4C00850E2F /* LogoTitleView.swift */,
+				81F12DC327C05C4C00850E2F /* LogoView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -245,9 +248,10 @@
 				814510FE27C1522400FB3B4D /* ContentView.swift in Sources */,
 				8134059927C589D600ADCD77 /* View.swift in Sources */,
 				81F12DC627C05D3800850E2F /* LevelSelectionView.swift in Sources */,
+				8110291827C6F807006B8788 /* Test.swift in Sources */,
 				8134059427C5844600ADCD77 /* YesOrNoView.swift in Sources */,
 				81F12DA027C0186A00850E2F /* EdutainmentApp.swift in Sources */,
-				81F12DC427C05C4C00850E2F /* LogoTitleView.swift in Sources */,
+				81F12DC427C05C4C00850E2F /* LogoView.swift in Sources */,
 				81F12DB427C0260400850E2F /* MultiplicationIcon.swift in Sources */,
 				81F12DB727C026DA00850E2F /* Color.swift in Sources */,
 				81F12DBA27C039D800850E2F /* ContentModel.swift in Sources */,

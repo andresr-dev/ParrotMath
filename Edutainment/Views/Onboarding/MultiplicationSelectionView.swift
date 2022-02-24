@@ -11,18 +11,18 @@ struct MultiplicationSelectionView: View {
     
     @EnvironmentObject var vm: ContentModel
     @Binding var settingShowing: TypeOfSetting
+    @State private var animateLogo = false
     
     let columns: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 5, alignment: .center), count: 3)
     
     var body: some View {
         ZStack {
-            Color.theme.background
-                .ignoresSafeArea()
+            Color.theme.background.ignoresSafeArea()
             
             VStack(spacing: 20) {
                 title
                 Spacer(minLength: 0)
-                LogoTitleView()
+                LogoView(animate: $animateLogo)
                 Spacer(minLength: 0)
                 message
                 tablesGrid
@@ -59,6 +59,7 @@ extension MultiplicationSelectionView {
             ForEach(2..<11) { number in
                 Button {
                     vm.multiplicandSelected = number
+                    animateLogo = true
                 } label: {
                     MultiplicationIcon(
                         number: number,

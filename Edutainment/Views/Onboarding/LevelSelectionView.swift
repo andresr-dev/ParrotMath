@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LevelSelectionView: View {
     @EnvironmentObject private var vm: ContentModel
+    @State private var animateLogo = false
     private var levels = Level.allCases
     
     var body: some View {
@@ -18,7 +19,7 @@ struct LevelSelectionView: View {
             VStack(spacing: 20) {
                 title
                 Spacer()
-                LogoTitleView()
+                LogoView(animate: $animateLogo)
                 Spacer()
                 message
                 levelButtons
@@ -55,6 +56,7 @@ extension LevelSelectionView {
         ForEach(levels, id: \.self) { level in
             Button {
                 vm.levelSelected = level
+                animateLogo = true
             } label: {
                 Text(level.rawValue.capitalized)
                     .asDefaultButton(
