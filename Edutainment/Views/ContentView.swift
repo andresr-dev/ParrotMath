@@ -21,21 +21,34 @@ struct ContentView: View {
         }
         if !vm.settingsMode {
             if vm.screenShowing == .decideGame {
-                YesOrNoView()
-                    .transition(.asymmetric(
-                        insertion: .move(edge: .trailing),
-                        removal: .move(edge: .leading))
-                    )
+                NavigationView {
+                    YesOrNoView()
+                }
+                .transition(.asymmetric(
+                    insertion: .move(edge: .trailing),
+                    removal: .move(edge: .leading))
+                )
             }
             if vm.screenShowing == .sortGame {
-                SortingNumbersView()
-                    .transition(.asymmetric(
-                        insertion: .move(edge: .trailing),
-                        removal: .move(edge: .leading))
-                    )
+                NavigationView {
+                    SortingNumbersView()
+                }
+                .transition(.asymmetric(
+                    insertion: .move(edge: .trailing),
+                    removal: .move(edge: .leading))
+                )
             }
             if vm.screenShowing == .typeGame {
-                TypeAnswerView()
+                NavigationView {
+                    TypeAnswerView()
+                }
+                .transition(.asymmetric(
+                    insertion: .move(edge: .trailing),
+                    removal: .move(edge: .leading))
+                )
+            }
+            if vm.screenShowing == .resultView {
+                ResultView()
                     .transition(.asymmetric(
                         insertion: .move(edge: .trailing),
                         removal: .move(edge: .leading))

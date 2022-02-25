@@ -19,7 +19,7 @@ struct MultiplicationSelectionView: View {
         ZStack {
             Color.theme.background.ignoresSafeArea()
             
-            VStack(spacing: 20) {
+            VStack {
                 title
                 Spacer(minLength: 0)
                 LogoView(animate: $animateLogo)
@@ -30,9 +30,7 @@ struct MultiplicationSelectionView: View {
                 continueButton
             }
             .padding()
-            .padding(.bottom, 20)
         }
-        .ignoresSafeArea()
         .navigationBarHidden(true)
     }
 }
@@ -42,7 +40,7 @@ struct MultiplicationSelectionView_Previews: PreviewProvider {
         NavigationView {
             MultiplicationSelectionView(settingShowing: .constant(.tables))
         }
-            .environmentObject(ContentModel())
+        .environmentObject(ContentModel())
     }
 }
 
@@ -51,13 +49,12 @@ extension MultiplicationSelectionView {
         Text("Math Parrot")
             .font(.largeTitle)
             .fontWeight(.semibold)
-            //.padding(.top, 40)
     }
     private var message: some View {
         Text("Choose a table:")
             .font(.largeTitle)
             .fontWeight(.bold)
-            //.padding(.bottom, 5)
+            .padding(.bottom, 15)
     }
     private var tablesGrid: some View {
         LazyVGrid(columns: columns, spacing: 20) {

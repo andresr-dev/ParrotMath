@@ -28,9 +28,7 @@ struct LevelSelectionView: View {
                 continueButton
             }
             .padding()
-            .padding(.vertical, 20)
         }
-        .ignoresSafeArea()
         .navigationBarHidden(true)
     }
 }
@@ -40,7 +38,7 @@ struct LevelSelectionView_Previews: PreviewProvider {
         NavigationView {
             LevelSelectionView()
         }
-            .environmentObject(ContentModel())
+        .environmentObject(ContentModel())
     }
 }
 
@@ -49,7 +47,6 @@ extension LevelSelectionView {
         Text("Math Parrot")
             .font(.largeTitle)
             .fontWeight(.bold)
-            .padding(.top)
     }
     private var message: some View {
         Text("Choose a level:")

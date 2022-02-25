@@ -20,6 +20,7 @@ struct SortingNumbersView: View {
     @State private var showCharacterInOptions = Array(repeating: true, count: 5)
     @State private var userAnsweredRight: Bool?
     @State private var animateAnswer = false
+    @State private var showLogo = false
     @State private var animateLogo = false
     @State private var disableButtons = false
     
@@ -51,7 +52,7 @@ struct SortingNumbersView: View {
                 title
                 answerBox
                 Spacer(minLength: 0)
-                if userAnsweredRight != nil && userAnsweredRight! {
+                if showLogo {
                     logo.transition(.scale.animation(.spring()))
                 }
                 Spacer(minLength: 0)
@@ -206,27 +207,33 @@ extension SortingNumbersView {
         }
     }
     private func checkAnswer() {
+        disableButtons = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            // Check if user answered right
             if self.correctAnswer.contains(self.userAnswer) {
                 self.userAnsweredRight = true
             } else {
                 self.userAnsweredRight = false
             }
+            // Animate buttons
+            self.animateAnswer = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.animateAnswer = false
+            }
             if let userAnsweredRight = self.userAnsweredRight {
+                // Save the answer
                 vm.saveAnswer(userAnsweredRight: userAnsweredRight)
-                if !userAnsweredRight {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                // show logo or wrong card
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    if userAnsweredRight {
+                        showLogo = true
+                    } else {
                         withAnimation(.easeInOut) {
                             showWrongAnswerCard = true
                         }
                     }
                 }
             }
-            self.animateAnswer = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.animateAnswer = false
-            }
         }
-        disableButtons = true
     }
 }

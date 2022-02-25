@@ -18,6 +18,7 @@ struct YesOrNoView: View {
     
     @State private var posibleResults = [Int]()
     @State private var resultShowing = 0
+    @State private var showLogo = false
     @State private var showWrongAnswerCard = false
     
     var multiplication: String {
@@ -35,7 +36,7 @@ struct YesOrNoView: View {
                 title
                 multiplicationCard
                 Spacer(minLength: 0)
-                if userAnsweredRight {
+                if showLogo {
                     logo.transition(.scale.animation(.spring()))
                 }
                 Spacer(minLength: 0)
@@ -84,11 +85,12 @@ extension YesOrNoView {
             Text(resultShowing, format: .number)
         }
         .font(.system(size: 57, weight: .semibold, design: .default))
-        .padding()
-        .padding(.horizontal, 30)
+        .padding(20)
+        .frame(maxWidth: .infinity)
         .background(.white)
         .cornerRadius(30)
         .shadow(radius: 3)
+        .padding(.horizontal)
     }
     private var multiplicationView: some View {
         VStack(spacing: 0) {
@@ -150,22 +152,28 @@ extension YesOrNoView {
     private func buttonPressed(option: YesOrNo) {
         optionSelected = option
         let correctAnswerIsShowing = correctAnswer == resultShowing
+        // Check if user answered right
         if correctAnswerIsShowing {
             userAnsweredRight = optionSelected == .yes
         } else {
             userAnsweredRight = optionSelected == .no
         }
-        vm.saveAnswer(userAnsweredRight: userAnsweredRight)
-        if !userAnsweredRight {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                withAnimation(.easeInOut) {
-                    showWrongAnswerCard = true
-                }
-            }
-        }
+        // Animate button
         animateAnswer = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
             animateAnswer = false
+        }
+        // Save the answer
+        vm.saveAnswer(userAnsweredRight: userAnsweredRight)
+        // Present logo or wrong card
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            if userAnsweredRight {
+                showLogo = true
+            } else {
+                withAnimation {
+                    showWrongAnswerCard = true
+                }
+            }
         }
     }
 }

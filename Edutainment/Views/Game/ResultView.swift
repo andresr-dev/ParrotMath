@@ -11,6 +11,7 @@ struct ResultView: View {
     @EnvironmentObject private var vm: ContentModel
     
     @State private var score = 0
+    @State private var animateLogo = false
     
     var initialNumberOfQuestions: Int {
         switch vm.levelSelected {
@@ -26,7 +27,7 @@ struct ResultView: View {
         vm.numberOfQuestions - initialNumberOfQuestions
     }
     var mistakesPercentage: Double {
-        Double(numberOfMistakes) / Double(initialNumberOfQuestions)
+        (Double(numberOfMistakes) / Double(initialNumberOfQuestions)) * 100
     }
     var title: String {
         switch mistakesPercentage {
@@ -46,7 +47,7 @@ struct ResultView: View {
                 titleView
                 scoreView
                 Spacer()
-                LogoView(animate: .constant(false))
+                LogoView(animate: $animateLogo)
                 Spacer()
                 button
             }
@@ -70,6 +71,7 @@ extension ResultView {
         Text(title)
             .font(.largeTitle.weight(.semibold))
             .padding(.vertical)
+            .padding(.bottom, 15)
     }
     private var scoreView: some View {
         VStack {
@@ -79,10 +81,11 @@ extension ResultView {
             Text("\(score)")
                 .font(.system(size: 60, weight: .semibold, design: .default))
             Spacer()
-            Text("You made \(numberOfMistakes) mistakes")
+            Text("You made \(numberOfMistakes) \(numberOfMistakes == 1 ? "mistake" : "mistakes")")
                 .font(.title3.weight(.semibold))
         }
         .padding(20)
+        .padding(.horizontal, 10)
         .frame(height: 200)
         .background(.white)
         .cornerRadius(25)
@@ -92,7 +95,7 @@ extension ResultView {
         Button {
             vm.playAgain()
         } label: {
-            Text("Play Again")
+            Text("Play Again!")
                 .asDefaultButton(foregroundColor: .white, backgroundColor: .theme.darkBlue)
         }
     }
@@ -108,6 +111,11 @@ extension ResultView {
             for i in 1...points {
                 DispatchQueue.main.asyncAfter(deadline: .now() + Double(i)/100) {
                     score += 1
+                    if i == points {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            animateLogo = true
+                        }
+                    }
                 }
             }
         }

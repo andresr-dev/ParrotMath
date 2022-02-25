@@ -22,10 +22,8 @@ struct EdutainmentApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                ContentView()
-            }
-            .environmentObject(vm)
+            ContentView()
+                .environmentObject(vm)
         }
     }
 }

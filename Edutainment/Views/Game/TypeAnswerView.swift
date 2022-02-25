@@ -56,8 +56,10 @@ struct TypeAnswerView: View {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()
                 Button("Done") {
-                    checkAnswer()
                     keyboardIsFocused = false
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                        checkAnswer()
+                    }
                 }
             }
         }
@@ -145,12 +147,16 @@ extension TypeAnswerView {
 extension TypeAnswerView {
     private func checkAnswer() {
         userAnsweredRight = Int(userAnswer) == correctAnswer
+        // Animate button
         animateAnswer = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             animateAnswer = false
         }
         if let userAnsweredRight = userAnsweredRight {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            // Save the answer
+            vm.saveAnswer(userAnsweredRight: userAnsweredRight)
+            // Show logo or wrong answer card
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 if userAnsweredRight {
                     showLogo = true
                 } else {

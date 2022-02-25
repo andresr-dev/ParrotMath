@@ -39,17 +39,24 @@ class ContentModel: ObservableObject {
             settingsMode = false
         }
     }
-    
     func newQuestion() {
-        updateMultiplier()
         if userAnswers.isNotEmpty {
-            updateCurrentQuestion()
             updateScreenShowing()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.updateCurrentQuestion()
+            }
+        }
+        if currentQuestion < numberOfQuestions {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.updateMultiplier()
+            }
         }
     }
     private func updateMultiplier() {
         if multiplierOptions.isNotEmpty {
             multiplier = multiplierOptions.randomElement() ?? 0
+            print("[👉🏻] Multiplier options: \(multiplierOptions)")
+            print("[👉🏻] Multiplier chosen: \(multiplier)")
             multiplierOptions.remove(multiplier)
         } else {
             let multiplicationsToReview = userAnswers.filter { !$0.value }
@@ -57,7 +64,9 @@ class ContentModel: ObservableObject {
                 // There's multiplications to review
                 let multipliersToReview = multiplicationsToReview.map { $0.key }
                 multiplierOptions = Set(multipliersToReview)
+                print("[👉🏻] Multiplier options to review: \(multiplierOptions)")
                 multiplier = multiplierOptions.randomElement() ?? 0
+                print("[👉🏻] Multiplier to review chosen: \(multiplier)")
                 multiplierOptions.remove(multiplier)
             } else {
                 // There's no multiplications to review so fill multiplier options again
@@ -65,13 +74,6 @@ class ContentModel: ObservableObject {
                 multiplier = multiplierOptions.randomElement() ?? 0
                 multiplierOptions.remove(multiplier)
             }
-        }
-    }
-    private func updateCurrentQuestion() {
-        if currentQuestion < numberOfQuestions {
-            currentQuestion += 1
-        } else {
-            currentQuestion = 1
         }
     }
     private func updateScreenShowing() {
@@ -90,10 +92,18 @@ class ContentModel: ObservableObject {
             screenShowing = screens[screenShowingIndex]
         }
     }
+    private func updateCurrentQuestion() {
+        if currentQuestion < numberOfQuestions {
+            currentQuestion += 1
+        } else {
+            currentQuestion = 1
+        }
+    }
     func saveAnswer(userAnsweredRight: Bool) {
         userAnswers[multiplier] = userAnsweredRight
+        print("[👉🏻] user answers: \(userAnswers)")
         if !userAnsweredRight {
-            numberOfQuestions += 1
+            self.numberOfQuestions += 1
         }
     }
     func playAgain() {
