@@ -41,6 +41,9 @@ class ContentModel: ObservableObject {
         numberOfQuestions = initialNumberOfQuestions
         multiplierOptions = Set(2...10)
         userAnswers = [Int:Bool]()
+        print("[👉🏻] User Answers in starting game: \(userAnswers)")
+        multipliersToReview = Set<Int>()
+        print("[👉🏻] Multipliers to review in starting game: \(multipliersToReview)")
         screenShowing = .decideGame
         currentQuestion = 0
         screenShowingIndex = 0
@@ -69,6 +72,7 @@ class ContentModel: ObservableObject {
     }
     func updateMultiplier() {
         currentQuestion += 1
+        
         if currentQuestion <= initialNumberOfQuestions {
             // Generate random multipliers
             if multiplierOptions.isNotEmpty {

@@ -15,7 +15,7 @@ struct DefaultContinueButton: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.title2.weight(.semibold))
-            .frame(height: 60)
+            .frame(height: 55)
             .frame(maxWidth: .infinity)
             .foregroundColor(foregroundColor)
             .background(backgroundColor)

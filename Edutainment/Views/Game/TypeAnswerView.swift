@@ -69,8 +69,11 @@ struct TypeAnswerView: View {
             }
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 vm.updateMultiplier()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    keyboardIsFocused = true
+                }
             }
         }
     }
@@ -100,16 +103,16 @@ extension TypeAnswerView {
             multiplicationView
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 280)
+        .frame(height: 260)
         .padding()
     }
     private var multiplicationView: some View {
         VStack(spacing: 0) {
             Text(multiplication)
-                .font(.system(size: 60, weight: .semibold, design: .default))
+                .font(.system(size: 55, weight: .semibold, design: .default))
             
             Text("=")
-                .font(.system(size: 60, weight: .semibold, design: .default))
+                .font(.system(size: 55, weight: .semibold, design: .default))
                 .padding(.bottom, 15)
             
             TextField("##", text: $userAnswer)

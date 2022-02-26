@@ -20,11 +20,11 @@ struct WrongAnswerCard: View {
 
             VStack(spacing: 15) {
                 SadEmojiView(size: 85)
-                    .padding(.top, 15)
+                    .padding(.top, 5)
                 
                 Text("\(multiplication) = \(answer)")
-                    .font(.system(size: 45, weight: .semibold, design: .default))
-                Spacer()
+                    .font(.system(size: 42, weight: .semibold, design: .default))
+                Spacer(minLength: 0)
                 Button {
                     vm.showNextScreen()
                 } label: {
@@ -35,7 +35,7 @@ struct WrongAnswerCard: View {
             }
             .padding()
         }
-        .frame(height: 330)
+        .frame(height: 320)
     }
 }
 

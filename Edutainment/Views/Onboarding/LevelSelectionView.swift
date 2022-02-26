@@ -44,13 +44,13 @@ struct LevelSelectionView_Previews: PreviewProvider {
 
 extension LevelSelectionView {
     private var title: some View {
-        Text("Math Parrot")
+        Text("Math Parrot!")
             .font(.largeTitle)
             .fontWeight(.bold)
     }
     private var message: some View {
         Text("Choose a level:")
-            .font(.largeTitle)
+            .font(.title)
             .fontWeight(.semibold)
             .padding(.bottom, 15)
     }

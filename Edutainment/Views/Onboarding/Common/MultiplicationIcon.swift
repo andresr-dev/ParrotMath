@@ -23,7 +23,7 @@ struct MultiplicationIcon: View {
                 .fontWeight(.semibold)
                 .foregroundColor(foregroundColor)
         }
-        .frame(width: 90, height: 90)
+        .frame(width: 85, height: 85)
     }
 }
 

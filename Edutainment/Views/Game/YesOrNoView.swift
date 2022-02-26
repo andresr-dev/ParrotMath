@@ -84,7 +84,7 @@ extension YesOrNoView {
                 .padding(.bottom, 2)
             Text(resultShowing, format: .number)
         }
-        .font(.system(size: 57, weight: .semibold, design: .default))
+        .font(.system(size: 52, weight: .semibold, design: .default))
         .padding(20)
         .frame(maxWidth: .infinity)
         .background(.white)
@@ -143,7 +143,7 @@ extension YesOrNoView {
 // MARK: - FUNCTIONS
 extension YesOrNoView {
     private func setProperties() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + (vm.gameJustStarted ? 0.0 : 0.25)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + (vm.gameJustStarted ? 0.0 : 0.2)) {
             vm.updateMultiplier()
             posibleResults.append(correctAnswer)
             posibleResults.append(correctAnswer + 1)

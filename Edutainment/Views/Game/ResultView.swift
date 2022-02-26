@@ -93,6 +93,7 @@ extension ResultView {
     private var button: some View {
         Button {
             withAnimation {
+                vm.multiplicandSelected = Int.random(in: 2...10)
                 vm.settingsMode = true
             }
         } label: {

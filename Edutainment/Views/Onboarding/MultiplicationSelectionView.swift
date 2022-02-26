@@ -46,13 +46,13 @@ struct MultiplicationSelectionView_Previews: PreviewProvider {
 
 extension MultiplicationSelectionView {
     private var title: some View {
-        Text("Math Parrot")
+        Text("Math Parrot!")
             .font(.largeTitle)
             .fontWeight(.semibold)
     }
     private var message: some View {
         Text("Choose a table:")
-            .font(.largeTitle)
+            .font(.title)
             .fontWeight(.bold)
             .padding(.bottom, 15)
     }
@@ -71,6 +71,7 @@ extension MultiplicationSelectionView {
                 }
             }
         }
+        .padding(.horizontal, 5)
     }
     private var continueButton: some View {
         Button {

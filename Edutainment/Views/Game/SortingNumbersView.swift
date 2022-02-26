@@ -12,7 +12,7 @@ struct SortingNumbersView: View {
     @Namespace private var namespace
     
     let columns: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 11, alignment: .center), count: 3)
-    let frameHeight: CGFloat = 233
+    let frameHeight: CGFloat = 220
     
     @State private var optionsCharacters = [String]()
     @State private var userAnswer = [String]()
@@ -95,7 +95,7 @@ extension SortingNumbersView {
     private var title: some View {
         Text("Sort the numbers")
             .font(.largeTitle.weight(.semibold))
-            .padding(5)
+            .padding(3)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
     private var answerBox: some View {
@@ -104,7 +104,7 @@ extension SortingNumbersView {
                 .fill(.white)
                 .shadow(radius: 4)
             
-            LazyVGrid(columns: columns, spacing: 18) {
+            LazyVGrid(columns: columns, spacing: 15) {
                 ForEach(0..<userAnswer.count, id: \.self) { index in
                     
                     let showCharacterIndex = rectanglesIdIndices[index]
@@ -126,7 +126,7 @@ extension SortingNumbersView {
         .padding([.horizontal, .top], 5)
     }
     private var optionsBox: some View {
-        LazyVGrid(columns: columns, spacing: 18) {
+        LazyVGrid(columns: columns, spacing: 15) {
             ForEach(0..<optionsCharacters.count, id: \.self) { index in
                 
                 if showCharacterInOptions[index] {
@@ -140,7 +140,7 @@ extension SortingNumbersView {
                 } else {
                     RoundedRectangle(cornerRadius: 20)
                         .stroke(lineWidth: 0.5)
-                        .frame(width: 90, height: 90)
+                        .frame(width: 85, height: 85)
                 }
             }
         }
@@ -155,7 +155,8 @@ extension SortingNumbersView {
                         userAnsweredRight! ? Color.green : Color.red
                 )
                 .animation(.spring(), value: userAnsweredRight)
-                .frame(width: 90, height: 90)
+                .frame(width: 85, height: 85)
+                .shadow(radius: 5)
             
             Text(text)
                 .font(.system(size: 38, weight: .medium, design: .default))
@@ -183,7 +184,7 @@ extension SortingNumbersView {
 
 extension SortingNumbersView {
     private func getOptionsCharacteres() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             vm.updateMultiplier()
             let correctAnswerShuffled = correctAnswer.first?.shuffled() ?? [""]
             for i in 0..<correctAnswerShuffled.count {
