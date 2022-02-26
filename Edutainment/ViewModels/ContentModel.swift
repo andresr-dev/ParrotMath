@@ -18,6 +18,7 @@ class ContentModel: ObservableObject {
     @Published var initialNumberOfQuestions = 10
     @Published var numberOfQuestions = 10
     @Published var currentQuestion = 0
+    var numberOfMistakes = 0
     
     private var multiplierOptions = Set<Int>()
     @Published var multiplier = 2
@@ -41,6 +42,7 @@ class ContentModel: ObservableObject {
         numberOfQuestions = initialNumberOfQuestions
         multiplierOptions = Set(2...10)
         userAnswers = [Int:Bool]()
+        numberOfMistakes = 0
         print("[👉🏻] User Answers in starting game: \(userAnswers)")
         multipliersToReview = Set<Int>()
         print("[👉🏻] Multipliers to review in starting game: \(multipliersToReview)")
@@ -103,6 +105,9 @@ class ContentModel: ObservableObject {
         multipliersToReview = Set(numbersToReview.map({$0.key}))
         print("[👉🏻] Multipliers to review: \(multipliersToReview)")
         
+        if !userAnsweredRight {
+            numberOfMistakes += 1
+        }
         if currentQuestion <= initialNumberOfQuestions {
             numberOfQuestions = initialNumberOfQuestions + multipliersToReview.count
         } else if !userAnsweredRight {

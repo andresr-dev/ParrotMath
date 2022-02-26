@@ -156,7 +156,7 @@ extension SortingNumbersView {
                 )
                 .animation(.spring(), value: userAnsweredRight)
                 .frame(width: 85, height: 85)
-                .shadow(radius: 5)
+                .shadow(radius: 3)
             
             Text(text)
                 .font(.system(size: 38, weight: .medium, design: .default))
@@ -212,7 +212,7 @@ extension SortingNumbersView {
     }
     private func checkAnswer() {
         disableButtons = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
             // Check if user answered right
             if self.correctAnswer.contains(self.userAnswer) {
                 self.userAnsweredRight = true

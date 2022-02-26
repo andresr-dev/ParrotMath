@@ -71,7 +71,7 @@ struct TypeAnswerView: View {
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 vm.updateMultiplier()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                     keyboardIsFocused = true
                 }
             }

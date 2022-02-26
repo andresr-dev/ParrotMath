@@ -15,11 +15,8 @@ struct ResultView: View {
     @State private var showLogo = false
     @State private var showSadEmoji = false
     
-    var numberOfMistakes: Int {
-        vm.numberOfQuestions - vm.initialNumberOfQuestions
-    }
     var mistakesPercentage: Double {
-        (Double(numberOfMistakes) / Double(vm.initialNumberOfQuestions)) * 100
+        (Double(vm.numberOfMistakes) / Double(vm.initialNumberOfQuestions)) * 100
     }
     var title: String {
         switch mistakesPercentage {
@@ -79,7 +76,7 @@ extension ResultView {
             Text("\(score)")
                 .font(.system(size: 60, weight: .semibold, design: .default))
             Spacer()
-            Text("You made \(numberOfMistakes) \(numberOfMistakes == 1 ? "mistake" : "mistakes")")
+            Text("You made \(vm.numberOfMistakes) \(vm.numberOfMistakes == 1 ? "mistake" : "mistakes")")
                 .font(.title2.weight(.semibold))
         }
         .padding(25)
