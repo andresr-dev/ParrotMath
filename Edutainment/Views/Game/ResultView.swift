@@ -12,28 +12,20 @@ struct ResultView: View {
     
     @State private var score = 0
     @State private var animateLogo = false
+    @State private var showLogo = false
+    @State private var showSadEmoji = false
     
-    var initialNumberOfQuestions: Int {
-        switch vm.levelSelected {
-        case .easy:
-            return 5
-        case .normal:
-            return 10
-        case .expert:
-            return 20
-        }
-    }
     var numberOfMistakes: Int {
-        vm.numberOfQuestions - initialNumberOfQuestions
+        vm.numberOfQuestions - vm.initialNumberOfQuestions
     }
     var mistakesPercentage: Double {
-        (Double(numberOfMistakes) / Double(initialNumberOfQuestions)) * 100
+        (Double(numberOfMistakes) / Double(vm.initialNumberOfQuestions)) * 100
     }
     var title: String {
         switch mistakesPercentage {
         case 0:
             return "Perfect!"
-        case 1...30:
+        case 1...50:
             return "Well Done!"
         default:
             return "You can do better!"
@@ -47,7 +39,13 @@ struct ResultView: View {
                 titleView
                 scoreView
                 Spacer()
-                LogoView(animate: $animateLogo)
+                if showLogo {
+                    logo.transition(.scale.animation(.spring()))
+                }
+                if showSadEmoji {
+                    SadEmojiView(size: 120)
+                        .transition(.scale.animation(.easeOut(duration: 1.5)))
+                }
                 Spacer()
                 button
             }
@@ -76,31 +74,43 @@ extension ResultView {
     private var scoreView: some View {
         VStack {
             Text("Score:")
-                .font(.title.weight(.semibold))
+                .font(.largeTitle.weight(.bold))
             Spacer()
             Text("\(score)")
                 .font(.system(size: 60, weight: .semibold, design: .default))
             Spacer()
             Text("You made \(numberOfMistakes) \(numberOfMistakes == 1 ? "mistake" : "mistakes")")
-                .font(.title3.weight(.semibold))
+                .font(.title2.weight(.semibold))
         }
-        .padding(20)
-        .padding(.horizontal, 10)
-        .frame(height: 200)
+        .padding(25)
+        .frame(maxWidth: .infinity)
+        .frame(height: 220)
         .background(.white)
-        .cornerRadius(25)
+        .cornerRadius(30)
         .shadow(radius: 3)
+        .padding(.horizontal, 20)
     }
     private var button: some View {
         Button {
-            vm.playAgain()
+            withAnimation {
+                vm.settingsMode = true
+            }
         } label: {
             Text("Play Again!")
                 .asDefaultButton(foregroundColor: .white, backgroundColor: .theme.darkBlue)
         }
     }
+    private var logo: some View {
+        LogoView(animate: $animateLogo)
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                    animateLogo = true
+                }
+            }
+    }
 }
 
+// MARK: - FUNCTIONS
 extension ResultView {
     private func calculateScore() {
         var points = Int(100 - mistakesPercentage)
@@ -108,15 +118,23 @@ extension ResultView {
             points = 0
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            for i in 1...points {
-                DispatchQueue.main.asyncAfter(deadline: .now() + Double(i)/100) {
-                    score += 1
-                    if i == points {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                            animateLogo = true
+            if points > 0 {
+                for i in 0..<points {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + Double(i)/100) {
+                        score += 1
+                        if i == points - 1 {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                if score > 50 {
+                                    showLogo = true
+                                } else {
+                                    showSadEmoji = true
+                                }
+                            }
                         }
                     }
                 }
+            } else {
+                showSadEmoji = true
             }
         }
     }

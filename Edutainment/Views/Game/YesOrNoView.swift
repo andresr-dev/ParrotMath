@@ -133,7 +133,7 @@ extension YesOrNoView {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                     animateLogo = true
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
-                        vm.newQuestion()
+                        vm.showNextScreen()
                     }
                 }
             }
@@ -141,13 +141,16 @@ extension YesOrNoView {
 }
 
 // MARK: - FUNCTIONS
-
 extension YesOrNoView {
     private func setProperties() {
-        posibleResults.append(correctAnswer)
-        posibleResults.append(correctAnswer + 1)
-        posibleResults.append(correctAnswer - 1)
-        resultShowing = posibleResults.randomElement() ?? 0
+        DispatchQueue.main.asyncAfter(deadline: .now() + (vm.gameJustStarted ? 0.0 : 0.25)) {
+            vm.updateMultiplier()
+            posibleResults.append(correctAnswer)
+            posibleResults.append(correctAnswer + 1)
+            posibleResults.append(correctAnswer - 1)
+            resultShowing = posibleResults.randomElement() ?? 0
+            vm.gameJustStarted = false
+        }
     }
     private func buttonPressed(option: YesOrNo) {
         optionSelected = option

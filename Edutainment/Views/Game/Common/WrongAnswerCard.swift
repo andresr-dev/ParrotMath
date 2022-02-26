@@ -9,11 +9,8 @@ import SwiftUI
 
 struct WrongAnswerCard: View {
     @EnvironmentObject private var vm: ContentModel
-    private let emojis = ["😔", "😫", "😟", "😩"]
     let multiplication: String
     let answer: Int
-    @State private var animate = false
-    @State private var emojiSelected = ""
     
     var body: some View {
         ZStack {
@@ -22,18 +19,14 @@ struct WrongAnswerCard: View {
                 .shadow(radius: 3)
 
             VStack(spacing: 15) {
-                Text(emojiSelected)
-                    .font(.system(size: 85))
-                    .scaleEffect(animate ? 1.15 : 1.0)
-                    .animation(.easeInOut(duration: 1).repeatForever(autoreverses: true), value: animate)
-                    .shadow(radius: 3)
+                SadEmojiView(size: 85)
                     .padding(.top, 15)
                 
                 Text("\(multiplication) = \(answer)")
                     .font(.system(size: 45, weight: .semibold, design: .default))
                 Spacer()
                 Button {
-                    vm.newQuestion()
+                    vm.showNextScreen()
                 } label: {
                     Text("Continue")
                         .asDefaultButton(foregroundColor: .white, backgroundColor: .theme.darkBlue)
@@ -43,12 +36,6 @@ struct WrongAnswerCard: View {
             .padding()
         }
         .frame(height: 330)
-        .onAppear {
-            emojiSelected = emojis.randomElement() ?? "😭"
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                animate = true
-            }
-        }
     }
 }
 

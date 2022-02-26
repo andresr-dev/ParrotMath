@@ -17,6 +17,7 @@ struct LogoView: View {
             .resizable()
             .scaledToFit()
             .frame(height: 120)
+            .shadow(radius: 3)
             .scaleEffect(scale ? 1.2 : 1.0)
             .rotationEffect(.degrees(rotate ? 360 : 0))
             .animation(.interpolatingSpring(stiffness: 30, damping: 10), value: scale)

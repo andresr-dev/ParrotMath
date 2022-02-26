@@ -25,7 +25,7 @@ struct LevelSelectionView: View {
                 levelButtons
                 Spacer()
                 Spacer()
-                continueButton
+                startGameButton
             }
             .padding()
         }
@@ -68,10 +68,9 @@ extension LevelSelectionView {
             }
         }
     }
-    private var continueButton: some View {
+    private var startGameButton: some View {
         Button {
             vm.startGame()
-            vm.newQuestion()
         } label: {
             Text("Start Game!")
                 .asDefaultButton(foregroundColor: .black, backgroundColor: .white)

@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  Edutainment
 //
-//  Created by Andres camilo Raigoza misas on 19/02/22.
+//  Created by Andres on 19/02/22.
 //
 
 import SwiftUI

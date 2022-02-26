@@ -30,18 +30,17 @@ struct TypeAnswerView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             Color.theme.background.ignoresSafeArea()
-            
             VStack {
                 title
                 multiplicationCard
-                    .padding(.bottom, 30)
+                Spacer(minLength: 0)
                 if showLogo {
                     logo.transition(.scale.animation(.spring()))
                 }
-                Spacer()
+                Spacer(minLength: 0)
+                Spacer(minLength: 0)
             }
             .padding()
-            
             if showWrongAnswerCard {
                 WrongAnswerCard(
                     multiplication: multiplication,
@@ -67,6 +66,11 @@ struct TypeAnswerView: View {
             if newValue.count > 3 {
                 let array = Array(userAnswer)
                 userAnswer = String(array.dropLast())
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                vm.updateMultiplier()
             }
         }
     }
@@ -135,7 +139,7 @@ extension TypeAnswerView {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                     animateLogo = true
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
-                        vm.newQuestion()
+                        vm.showNextScreen()
                     }
                 }
             }

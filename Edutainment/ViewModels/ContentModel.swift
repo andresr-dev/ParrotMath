@@ -10,15 +10,18 @@ import SwiftUI
 
 class ContentModel: ObservableObject {
     
+    var gameJustStarted = false
     @Published var settingsMode = true
     @Published var multiplicandSelected = Int.random(in: 2...10)
     @Published var levelSelected: Level = .normal
     
+    @Published var initialNumberOfQuestions = 10
     @Published var numberOfQuestions = 10
-    @Published var currentQuestion = 1
+    @Published var currentQuestion = 0
     
-    private var multiplierOptions = Set(2...10)
+    private var multiplierOptions = Set<Int>()
     @Published var multiplier = 2
+    private var multipliersToReview = Set<Int>()
     
     private var userAnswers = [Int:Bool]()
     
@@ -29,58 +32,30 @@ class ContentModel: ObservableObject {
     func startGame() {
         switch levelSelected {
         case .easy:
-            numberOfQuestions = 5
+            initialNumberOfQuestions = 5
         case .normal:
-            numberOfQuestions = 10
+            initialNumberOfQuestions = 10
         case .expert:
-            numberOfQuestions = 20
+            initialNumberOfQuestions = 20
         }
+        numberOfQuestions = initialNumberOfQuestions
+        multiplierOptions = Set(2...10)
+        userAnswers = [Int:Bool]()
+        screenShowing = .decideGame
+        currentQuestion = 0
+        screenShowingIndex = 0
+        gameJustStarted = true
         withAnimation {
             settingsMode = false
         }
     }
-    func newQuestion() {
-        if userAnswers.isNotEmpty {
-            updateScreenShowing()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.updateCurrentQuestion()
-            }
-        }
-        if currentQuestion < numberOfQuestions {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.updateMultiplier()
-            }
-        }
-    }
-    private func updateMultiplier() {
-        if multiplierOptions.isNotEmpty {
-            multiplier = multiplierOptions.randomElement() ?? 0
-            print("[👉🏻] Multiplier options: \(multiplierOptions)")
-            print("[👉🏻] Multiplier chosen: \(multiplier)")
-            multiplierOptions.remove(multiplier)
-        } else {
-            let multiplicationsToReview = userAnswers.filter { !$0.value }
-            if multiplicationsToReview.count > 0 {
-                // There's multiplications to review
-                let multipliersToReview = multiplicationsToReview.map { $0.key }
-                multiplierOptions = Set(multipliersToReview)
-                print("[👉🏻] Multiplier options to review: \(multiplierOptions)")
-                multiplier = multiplierOptions.randomElement() ?? 0
-                print("[👉🏻] Multiplier to review chosen: \(multiplier)")
-                multiplierOptions.remove(multiplier)
-            } else {
-                // There's no multiplications to review so fill multiplier options again
-                multiplierOptions = Set(2...10)
-                multiplier = multiplierOptions.randomElement() ?? 0
-                multiplierOptions.remove(multiplier)
-            }
-        }
-    }
-    private func updateScreenShowing() {
+    func showNextScreen() {
         // Check if it's last question
         if currentQuestion == numberOfQuestions {
+            // Show result view
             screenShowingIndex = screens.count - 1
         } else {
+            // Loop through the first three itmes of screens array
             let currentIndex = screens.firstIndex(of: screenShowing) ?? 0
             if currentIndex < screens.count - 2 {
                 screenShowingIndex += 1
@@ -92,24 +67,40 @@ class ContentModel: ObservableObject {
             screenShowing = screens[screenShowingIndex]
         }
     }
-    private func updateCurrentQuestion() {
-        if currentQuestion < numberOfQuestions {
-            currentQuestion += 1
+    func updateMultiplier() {
+        currentQuestion += 1
+        if currentQuestion <= initialNumberOfQuestions {
+            // Generate random multipliers
+            if multiplierOptions.isNotEmpty {
+                print("[👉🏻] Multiplier options: \(multiplierOptions)")
+                multiplier = multiplierOptions.randomElement() ?? 0
+                print("[👉🏻] Multiplier chosen: \(multiplier)")
+                multiplierOptions.remove(multiplier)
+            } else {
+                multiplierOptions = Set(2...10)
+                print("[👉🏻] Multiplier options refilled: \(multiplierOptions)")
+                multiplier = multiplierOptions.randomElement() ?? 0
+                print("[👉🏻] Multiplier chosen: \(multiplier)")
+                multiplierOptions.remove(multiplier)
+            }
         } else {
-            currentQuestion = 1
+            // Set multiplier with multipliers to review
+            print("[👉🏻] Multipliers to review: \(multipliersToReview)")
+            multiplier = multipliersToReview.randomElement() ?? 0
+            print("[👉🏻] Multiplier chosen to review: \(multiplier)")
+            multipliersToReview.remove(multiplier)
         }
     }
     func saveAnswer(userAnsweredRight: Bool) {
         userAnswers[multiplier] = userAnsweredRight
-        print("[👉🏻] user answers: \(userAnswers)")
+        print("[👉🏻] User answers: \(userAnswers)")
+        
+        let numbersToReview = userAnswers.filter({!$0.value})
+        multipliersToReview = Set(numbersToReview.map({$0.key}))
+        print("[👉🏻] Multipliers to review: \(multipliersToReview)")
+        
         if !userAnsweredRight {
-            self.numberOfQuestions += 1
+            numberOfQuestions += 1
         }
-    }
-    func playAgain() {
-        multiplierOptions = Set(2...10)
-        userAnswers = [Int:Bool]()
-        settingsMode = true
-        screenShowing = .decideGame
     }
 }

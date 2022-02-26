@@ -172,7 +172,7 @@ extension SortingNumbersView {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                     animateLogo = true
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
-                        vm.newQuestion()
+                        vm.showNextScreen()
                     }
                 }
             }
@@ -183,10 +183,13 @@ extension SortingNumbersView {
 
 extension SortingNumbersView {
     private func getOptionsCharacteres() {
-        let correctAnswerShuffled = correctAnswer.first?.shuffled() ?? [""]
-        for i in 0..<correctAnswerShuffled.count {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3 + (Double(i)/10 + 0.1)) {
-                self.optionsCharacters.append(correctAnswerShuffled[i])
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            vm.updateMultiplier()
+            let correctAnswerShuffled = correctAnswer.first?.shuffled() ?? [""]
+            for i in 0..<correctAnswerShuffled.count {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3 + (Double(i)/10 + 0.1)) {
+                    self.optionsCharacters.append(correctAnswerShuffled[i])
+                }
             }
         }
     }
