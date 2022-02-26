@@ -95,7 +95,7 @@ extension SortingNumbersView {
     private var title: some View {
         Text("Sort the numbers")
             .font(.largeTitle.weight(.semibold))
-            .padding(3)
+            .padding(5)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
     private var answerBox: some View {

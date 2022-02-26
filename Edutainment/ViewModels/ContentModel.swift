@@ -103,7 +103,10 @@ class ContentModel: ObservableObject {
         multipliersToReview = Set(numbersToReview.map({$0.key}))
         print("[👉🏻] Multipliers to review: \(multipliersToReview)")
         
-        if !userAnsweredRight {
+        if currentQuestion <= initialNumberOfQuestions {
+            numberOfQuestions = initialNumberOfQuestions + multipliersToReview.count
+        } else if !userAnsweredRight {
+            // We are in review mode
             numberOfQuestions += 1
         }
     }

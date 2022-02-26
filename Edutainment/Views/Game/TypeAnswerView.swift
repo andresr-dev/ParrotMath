@@ -153,6 +153,12 @@ extension TypeAnswerView {
 
 extension TypeAnswerView {
     private func checkAnswer() {
+        guard userAnswer != "" else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                keyboardIsFocused = true
+            }
+            return
+        }
         userAnsweredRight = Int(userAnswer) == correctAnswer
         // Animate button
         animateAnswer = true
