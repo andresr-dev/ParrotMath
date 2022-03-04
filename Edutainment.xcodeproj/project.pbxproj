@@ -127,7 +127,6 @@
 				81F12DC027C0411A00850E2F /* Helpers */,
 				81F12DB527C026CB00850E2F /* Extensions */,
 				814510FF27C1872C00FB3B4D /* Models */,
-				81F12DB827C039A800850E2F /* ViewModels */,
 				81F12DAD27C0208300850E2F /* Views */,
 				81F12DA327C0186B00850E2F /* Assets.xcassets */,
 				81F12DA527C0186B00850E2F /* Preview Content */,
@@ -146,6 +145,7 @@
 		81F12DAD27C0208300850E2F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				81F12DB927C039D800850E2F /* ContentModel.swift */,
 				814510FD27C1522400FB3B4D /* ContentView.swift */,
 				81F12DAE27C0209000850E2F /* Onboarding */,
 				814510F727C14B8600FB3B4D /* Game */,
@@ -174,14 +174,6 @@
 				819D1FFE27C7DEB200414189 /* Collection.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		81F12DB827C039A800850E2F /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				81F12DB927C039D800850E2F /* ContentModel.swift */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		81F12DBB27C03DCB00850E2F /* Common */ = {

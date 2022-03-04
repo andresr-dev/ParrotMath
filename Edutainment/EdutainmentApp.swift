@@ -23,6 +23,7 @@ struct EdutainmentApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(.light)
                 .environmentObject(vm)
         }
     }

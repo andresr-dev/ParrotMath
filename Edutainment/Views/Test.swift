@@ -2,7 +2,7 @@
 //  Test.swift
 //  Edutainment
 //
-//  Created by Andres camilo Raigoza misas on 23/02/22.
+//  Created by Andres on 23/02/22.
 //
 
 import SwiftUI
